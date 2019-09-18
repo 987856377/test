@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-public class NetworkTest {
+public class NetworkIP {
     public static List<String> getLocalIPList() {
         List<String> ipList = new ArrayList<>();
         try {
