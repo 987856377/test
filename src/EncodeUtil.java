@@ -6,7 +6,6 @@
  */
 
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,7 +22,7 @@ public class EncodeUtil {
      * @param raw
      * @return
      */
-    public static String encode(@NotNull String raw){
+    public static String encode(String raw){
 //        把原字符串按字符循环获取asc码，并格式化为3位整数；
         StringBuilder s = new StringBuilder();
         for(int i=0 ; i<raw.length(); ++i){
@@ -87,6 +86,6 @@ public class EncodeUtil {
         System.out.println(decode("500155500035500015400975500605400855500055400945400994"));
 
         Map<String,String> map = new ConcurrentHashMap<>();
-
+        System.out.println("$2a$10$SFThBICUUJeHvRwilpt7feqFwnn/ZnmmlzYN9/os5eGooILpZkAQm".length());
     }
 }
