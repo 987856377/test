@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="89d54e1c-763a-4a10-b7f1-0e68dfbd0e9b" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="89d54e1c-763a-4a10-b7f1-0e68dfbd0e9b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Thread/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Thread/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Thread/TestNum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Thread/TicketCenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ThreadLocal/DataSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ThreadLocal/DataSourceContextHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ThreadLocal/MultiRoutingDataSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ThreadLocal/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/Test1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/Test2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/Test3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/test/META-INF/test.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/test/META-INF/test.kotlin_module" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +34,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -34,11 +51,18 @@
     </option>
   </component>
   <component name="ProjectId" id="1PPzxDXHfE4VpJ2ZCWD3BCfwzVy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="D:/android-sdk-windows" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -58,55 +82,20 @@
     <key name="OPEN_URL_DIALOG">
       <recent name="https://gitee.com/bf-sd/ehc.git" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ThreadLocal" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\IdeaProjects\test\src\proxy\dynamicProxy" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.Main (1)">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="proxy.dynamicProxy.Main" />
-      <module name="test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="proxy.dynamicProxy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Test1">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="annotation.Main" />
+      <option name="MAIN_CLASS_NAME" value="Thread.Main" />
       <module name="test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="annotation.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="proxy.staticProxy.MainTest" />
-      <module name="test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="proxy.staticProxy.*" />
+          <option name="PATTERN" value="Thread.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -140,27 +129,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NetworkTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="NetworkTest" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ThreadLocal.Test" />
       <module name="test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ThreadLocal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Time" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Time" />
+    <configuration name="Test1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.Test1" />
       <module name="test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.Test2" />
+      <module name="test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.Test3" />
+      <module name="test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.NetworkTest" />
-        <item itemvalue="Application.Time" />
-        <item itemvalue="Application.MainTest" />
-        <item itemvalue="Application.MainTest" />
+        <item itemvalue="Application.Test1" />
+        <item itemvalue="Application.Test2" />
+        <item itemvalue="Application.Test3" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -210,11 +237,110 @@
       <workItem from="1568597906105" duration="8665000" />
       <workItem from="1568615034967" duration="766000" />
       <workItem from="1568615842716" duration="7757000" />
-      <workItem from="1568771063180" duration="3902000" />
+      <workItem from="1568771063180" duration="7470000" />
+      <workItem from="1568862007943" duration="206000" />
+      <workItem from="1568884055014" duration="4000" />
+      <workItem from="1569732962698" duration="1768000" />
+      <workItem from="1569735648375" duration="1193000" />
+      <workItem from="1569979034013" duration="2603000" />
+      <workItem from="1569999351245" duration="58000" />
+      <workItem from="1570000380569" duration="848000" />
+      <workItem from="1570280111495" duration="2000" />
+      <workItem from="1570330458532" duration="1390000" />
+      <workItem from="1571104439952" duration="117000" />
+      <workItem from="1571303919098" duration="132000" />
+      <workItem from="1573115147026" duration="150000" />
+      <workItem from="1573473323921" duration="71000" />
+      <workItem from="1573473579853" duration="263000" />
+      <workItem from="1573550097061" duration="465000" />
+      <workItem from="1575012347294" duration="2802000" />
+      <workItem from="1575546062936" duration="1653000" />
+      <workItem from="1576570064657" duration="1079000" />
+      <workItem from="1577105134859" duration="1535000" />
+      <workItem from="1577158484107" duration="876000" />
+      <workItem from="1577956070512" duration="1411000" />
+      <workItem from="1578122482338" duration="889000" />
+      <workItem from="1578361281836" duration="132000" />
+      <workItem from="1579226601842" duration="5362000" />
+      <workItem from="1579402252961" duration="9000" />
+      <workItem from="1580967636035" duration="817000" />
+      <workItem from="1580969573024" duration="343000" />
+      <workItem from="1581655480223" duration="88000" />
+      <workItem from="1582712855702" duration="735000" />
+      <workItem from="1583375134651" duration="3793000" />
+      <workItem from="1583573259517" duration="394000" />
+      <workItem from="1584413687969" duration="727000" />
+      <workItem from="1584422321529" duration="1591000" />
+      <workItem from="1584870785075" duration="1051000" />
+      <workItem from="1584874682619" duration="108000" />
+      <workItem from="1584874818083" duration="58000" />
+      <workItem from="1584878195366" duration="736000" />
+      <workItem from="1584886515918" duration="892000" />
+      <workItem from="1585020852019" duration="690000" />
+      <workItem from="1585730836664" duration="542000" />
     </task>
+    <task id="LOCAL-00001" summary="修改名称">
+      <created>1568776520196</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1568776520196</updated>
+    </task>
+    <task id="LOCAL-00002" summary="随便写写">
+      <created>1573550516850</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1573550516850</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="修改名称" />
+    <MESSAGE value="随便写写" />
+    <option name="LAST_COMMIT_MESSAGE" value="随便写写" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1584425585043">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1584425585043" />
+    <state width="1493" height="230" key="GridCell.Tab.0.bottom" timestamp="1585731382649">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="230" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585731382649" />
+    <state width="1493" height="230" key="GridCell.Tab.0.center" timestamp="1585731382649">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="230" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585731382649" />
+    <state width="1493" height="230" key="GridCell.Tab.0.left" timestamp="1585731382649">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="230" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585731382649" />
+    <state width="1493" height="230" key="GridCell.Tab.0.right" timestamp="1585731382649">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="230" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585731382649" />
+    <state x="562" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583573420327">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="562" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1583573420327" />
   </component>
 </project>
