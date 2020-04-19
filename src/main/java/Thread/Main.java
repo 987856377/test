@@ -15,8 +15,8 @@ public class Main {
         new Thread(new Client(sn)).start();
 
 
-        TicketCenter center = new TicketCenter("HANGZHONG");
-        new Thread(center).start();
-        new Thread(center).start();
+//        TicketCenter center = new TicketCenter("HANGZHONG");
+//        new Thread(center).start();
+//        new Thread(center).start();
     }
 }

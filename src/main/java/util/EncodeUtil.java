@@ -1,4 +1,4 @@
-/**
+package util; /**
  * @author xuzhenkui
  * @project test
  * @package PACKAGE_NAME

@@ -1,5 +1,11 @@
 package proxy.staticProxy;
 
+import proxy.User;
+import proxy.UserService;
+import proxy.UserServiceImpl;
+
+import java.util.Arrays;
+
 /**
  * @Description
  * @Project test
@@ -11,10 +17,10 @@ public class Main {
     public static void main(String[] args) {
         try {
             Object[] params = new Object [] {
-                    "frank"
+                    new User("frank","123")
             };
             ProxyHandler proxyHandler = new ProxyHandler();
-            proxyHandler.invoke(new User("frank"),User.class.getMethod("sayHello", Object.class),params);
+            proxyHandler.invoke(new UserServiceImpl(), UserService.class.getMethod("create", User.class),params);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
