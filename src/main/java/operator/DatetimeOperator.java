@@ -1,11 +1,8 @@
-package test;
+package operator;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Timer;
 
 /**
  * @Description
@@ -14,7 +11,7 @@ import java.util.Timer;
  * @Author xuzhenkui
  * @Date 2019/11/29 15:26
  */
-public class Test1 {
+public class DatetimeOperator {
 
     public static int getAgeByBirthDay(String birthDay){
         if (birthDay == null || birthDay.length()<4) {

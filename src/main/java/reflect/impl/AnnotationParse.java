@@ -1,6 +1,6 @@
-package annotation.impl;
+package reflect.impl;
 
-import annotation.Value;
+import reflect.annotation.Value;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
  * @Author xuzhenkui
  * @Date 2019/9/29 13:42
  */
+
 public class AnnotationParse {
     /**
      * 解析注解

@@ -1,4 +1,4 @@
-package annotation;
+package reflect.annotation;
 
 import java.lang.annotation.*;
 
@@ -10,8 +10,7 @@ import java.lang.annotation.*;
  * @Date 2019/9/6 10:06
  */
 @Documented
-@Inherited
-@Target({ElementType.FIELD,ElementType.TYPE,ElementType.METHOD})
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Value {
     String value() default "";

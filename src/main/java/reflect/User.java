@@ -1,4 +1,6 @@
-package annotation;
+package reflect;
+
+import reflect.annotation.Value;
 
 /**
  * @Description
@@ -8,6 +10,7 @@ package annotation;
  * @Date 2019/9/6 10:13
  */
 public class User {
+    @Value(value = "XuZhenkui")
     private String username;
 
     public User(){}
