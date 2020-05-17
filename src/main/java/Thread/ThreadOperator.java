@@ -14,20 +14,24 @@ public class ThreadOperator {
 
     public static void main(String[] args) {
         System.out.println("begin");
-//        output("Hello World");
+        output("Hello World");
 
 
-        new Thread("Thread_1"){
-            int count = 10000;
-            @Override
-            public void run() {
-                while (count > 0){
-                    synchronized (this){
-                        System.out.println("第 "+ count-- +" 张");
-                    }
-                }
-            }
-        }.start();
+//        new Thread("Thread_1"){
+//            int count = 10000;
+//            @Override
+//            public void run() {
+//                while (count > 0){
+//                    synchronized (this){
+//                        System.out.println("第 "+ count-- +" 张");
+//                    }
+//                }
+//            }
+//        }.start();
+
+        new Thread(() -> {
+            System.out.println(Thread.currentThread().getName()+"hello word");
+        },"Thread-Running: "){}.start();
 
         System.out.println("end");
     }

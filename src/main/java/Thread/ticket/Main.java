@@ -1,7 +1,4 @@
-package Thread;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+package Thread.ticket;
 
 /**
  * @Description

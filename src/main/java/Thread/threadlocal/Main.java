@@ -1,9 +1,9 @@
-package ThreadLocal;
+package Thread.threadlocal;
 
 /**
  * @Description
  * @Project test
- * @Package ThreadLocal
+ * @Package Thread.ThreadLocal
  * @Author xuzhenkui
  * @Date 2020/1/17 10:09
  */

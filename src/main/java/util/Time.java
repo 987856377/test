@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
@@ -43,6 +44,10 @@ public class Time {
 
         String name = "frank";
         System.out.println(name.replace("f","from"));
+
+
+//        java 8 推荐使用 Instant 来操作时间
+        System.out.println(Instant.now());
 
     }
 }

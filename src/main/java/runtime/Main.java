@@ -1,5 +1,7 @@
 package runtime;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * @Description
  * @Project test
