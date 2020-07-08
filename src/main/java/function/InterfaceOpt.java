@@ -1,6 +1,7 @@
 package function;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -49,5 +50,62 @@ public class InterfaceOpt {
         };
         System.out.println(predicate.test("xzk"));
 
+//      Optional类为了解决null值判断问题
+        System.out.println("name: "+getUsername(new Person(new Student("frank"))));
+
+        setUsername(new Person(new Student("lucy")));
+
+        setUsername(new Person(new Student()));
+
+    }
+
+    public static String getUsername(Person person){
+        return Optional.ofNullable(person).map(Person::getStudent).map(Student::getName).orElse(null);
+    }
+
+    public static void setUsername(Person person){
+        Optional.ofNullable(person).map(Person::getStudent).map(Student::getName).map(s -> {
+            System.out.println("name: "+s);
+            return s;
+        });
     }
 }
+
+class Person{
+    private Student student;
+
+    public Person() {
+    }
+
+    public Person(Student student) {
+        this.student = student;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+}
+
+class Student{
+    private String name;
+
+    public Student() {
+    }
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+

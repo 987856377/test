@@ -25,11 +25,11 @@ public class ExecutorsOpt {
         ExecutorService executorService = new ThreadPoolExecutor(2,5,30L,TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(3),Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
 
-//        for (int i = 0; i < 100000; i++) {
-//            ThreadPoolExecutorFactory.getThreadPoolExecutor().execute(() -> {
-//                System.out.println(Thread.currentThread().getName() + "新建业务");
-//            });
-//        }
+        for (int i = 0; i < 100000; i++) {
+            ThreadPoolExecutorFactory.getThreadPoolExecutor().execute(() -> {
+                System.out.println(Thread.currentThread().getName() + "新建业务");
+            });
+        }
 
 
         try {

@@ -7,7 +7,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
@@ -21,9 +22,9 @@ import java.util.logging.Logger;
  */
 public class Time {
     public static void main(String[] args) throws ParseException {
-        Date date1 = new Date();
-        System.out.println(date1.getTime());
-        System.out.println(date1.getTime()+120*1000*60);
+        Date date = new Date();
+        System.out.println(date.getTime());
+        System.out.println(date.getTime()+120*1000*60);
 
         SimpleDateFormat simdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
@@ -32,22 +33,39 @@ public class Time {
         String uuid = UUID.randomUUID().toString().replaceAll("-","").toUpperCase();
         System.out.println(uuid);
 
-        String saveFileName = new SimpleDateFormat("yyyy-MM-dd").format(new Date())+"@"+"fileName";
-        System.out.println(saveFileName);
-
-        Map map = new ConcurrentHashMap();
-        map.put("hospitalCode","1-1");
-        if (map.get("hospitalCode")!=null){
-            map.put("hospitalCode","9857");
-        }
-        System.out.println(map.get("hospitalCode"));
-
-        String name = "frank";
-        System.out.println(name.replace("f","from"));
-
 
 //        java 8 推荐使用 Instant 来操作时间
         System.out.println(Instant.now());
 
+
+        LocalDateTime now = LocalDateTime.now();
+        Date startDate = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
+        Date endDate = Date.from(now.plusMinutes(1).atZone(ZoneId.systemDefault()).toInstant());
+        System.out.println(startDate.toString());
+        System.out.println(endDate.toString());
+
+//        Date 转 LocalDateTime
+        Date date1 = new Date();
+        LocalDateTime localDateTime1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+//        LocalDateTime 转 Date
+        LocalDateTime localDateTime2 = LocalDateTime.now();
+        Date date2 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());
+
+        System.out.println(localDateTime1);
+        System.out.println(date2);
+
+//        LocalDateTime 转 String
+        String s = LocalDateTime.now().atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm"));
+        System.out.println(s);
+//        String 转 LocalDateTime
+        LocalDateTime parse = LocalDateTime.parse(s, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm"));
+        System.out.println(parse);
+
+//        LocalDateTime 转 long
+        long epochMilli = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        System.out.println(epochMilli);
+//        long 转 LocalDateTime
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMilli), ZoneId.systemDefault());
+        System.out.println(localDateTime);
     }
 }
