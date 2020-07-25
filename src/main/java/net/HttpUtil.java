@@ -1,6 +1,11 @@
 package net;
 
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONConverter;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -61,7 +66,9 @@ public class HttpUtil {
             while ((line = bReader.readLine()) != null) {
                 stringBuilder.append(line);
             }
-            jsonObject = JSONObject.parseObject(stringBuilder.toString());
+            String str = StringEscapeUtils.unescapeJavaScript(stringBuilder.toString());
+            System.out.println(str);
+            jsonObject = JSONObject.parseObject(StringEscapeUtils.unescapeJavaScript(stringBuilder.toString()));
             return jsonObject;
         } catch (IOException e) {
             e.printStackTrace();
@@ -85,16 +92,19 @@ public class HttpUtil {
 
 
     public static void main(String[] args) {
-//        JSONObject jsonObject=new JSONObject();
-//        jsonObject.put("hospitalCode","12312");
-//        jsonObject.put("patientCode","6484618");
-//        jsonObject.put("hospitalDistId","A73D49255EC8ECD6069839D354A12B79");
-//        HttpUtil.doPostJSONRequest("http://10.80.5.38:9335/register/queryBusCards",jsonObject);
-
         JSONObject jsonObject=new JSONObject();
-        jsonObject.put("code","3C151659");
-        String token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZXMiOlsiQURNSU4iLCJEQkEiLCJBVURJVCJdLCJpc3MiOiJQcmVzY3JpcHRpb24gQ2lyY3VsYXRpb24gUGxhdGZvcm0iLCJzdWIiOiJBdXRob3JpemF0aW9uIFRva2VuIiwiYXVkIjoiYWRtaW4iLCJpYXQiOjE1OTA0ODYxNjQsImV4cCI6MTU5MTA5MDk2NH0.Rb1KfHtJEALoGKATnLvBwZIjOHvUFU2KhY8mZ6UXfZl24R0i_QLstaJM6Ts-W6vIcBzey5qLT4_8qVmzyPxnOw";
-        JSONObject object = HttpUtil.doPostJSONRequest("http://127.0.0.1:8090/pcp/organization/getOrgIntroductionByCode", token , jsonObject);
-        System.out.println(object);
+        jsonObject.put("hospitalCode","12312");
+        jsonObject.put("patientCode","6484618");
+        String token ="";
+        jsonObject.put("hospitalDistId","A73D49255EC8ECD6069839D354A12B79");
+        HttpUtil.doPostJSONRequest("http://10.80.5.38:9335/register/queryBusCards",token, jsonObject);
+
+//        JSONObject jsonObject=new JSONObject();
+//        jsonObject.put("code","3C151659");
+//        String token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZXMiOlsiQURNSU4iLCJEQkEiLCJBVURJVCJdLCJpc3MiOiJQcmVzY3JpcHRpb24gQ2lyY3VsYXRpb24gUGxhdGZvcm0iLCJzdWIiOiJBdXRob3JpemF0aW9uIFRva2VuIiwiYXVkIjoiYWRtaW4iLCJpYXQiOjE1OTA0ODYxNjQsImV4cCI6MTU5MTA5MDk2NH0.Rb1KfHtJEALoGKATnLvBwZIjOHvUFU2KhY8mZ6UXfZl24R0i_QLstaJM6Ts-W6vIcBzey5qLT4_8qVmzyPxnOw";
+//        JSONObject object = HttpUtil.doPostJSONRequest("http://127.0.0.1:8090/pcp/organization/getOrgIntroductionByCode", token , jsonObject);
+//        System.out.println(object);
+
+
     }
 }

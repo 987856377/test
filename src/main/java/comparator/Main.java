@@ -15,5 +15,20 @@ public class Main {
 
         System.out.println(comparator.compare(1,2));
 
+        String s1 = "obj";
+        String s2 = "arg";
+        String s = Assert.notNull(s1, s2);
+        System.out.println(s);
+
+    }
+
+
+    static class Assert {
+        public static <T> T notNull(final T argument, final String name) {
+            if (argument == null) {
+                throw new IllegalArgumentException(name + " may not be null");
+            }
+            return argument;
+        }
     }
 }

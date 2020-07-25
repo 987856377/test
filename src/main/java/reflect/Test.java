@@ -1,6 +1,11 @@
 package reflect;
 
+import cn.hutool.core.util.ReflectUtil;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Test {
@@ -32,15 +37,10 @@ public class Test {
         System.out.println(String.class.getClassLoader());
         System.out.println(Person.class.getClassLoader());
 
-        Map<String, Map<String, String>> dictMap = new HashMap<>();
+        ReflectUtil.setFieldValue(person, "name", "cl");
+        System.out.println(person);
 
-        Map map = new HashMap();
-        map.put("是","1");
-        map.put("否","0");
-
-        dictMap.put("baseDrugAntibioticFlag",map);
-
-        System.out.println(dictMap.get("baseDrugAntibioticFlag").get("其他"));
+        System.out.println(Object.class.getClassLoader());
 
     }
 }

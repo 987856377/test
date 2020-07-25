@@ -29,10 +29,12 @@ public class CGlibProxy implements MethodInterceptor {
 
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+        long l = System.currentTimeMillis();
         System.out.println("CGlib 动态代理, 监听开始!");
         System.out.println("调用方法: "+method.getName());
         Object result = method.invoke(targetClass,objects);
         System.out.println("CGlib 动态代理, 监听结束!");
+        System.out.println(method.getName() + "调用耗时: " + (System.currentTimeMillis() - l) + " ms");
         return result;
     }
 }

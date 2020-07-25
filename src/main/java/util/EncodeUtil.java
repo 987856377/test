@@ -82,10 +82,10 @@ public class EncodeUtil {
         System.out.println(encode("ab2"));
         System.out.println(decode("900789500"));
 
-//        500155500035500015400975500605400855500055400945400994
+//        500155500035500015400975500605400855500055400945400994;;
         System.out.println(decode("500155500035500015400975500605400855500055400945400994"));
 
         Map<String,String> map = new ConcurrentHashMap<>();
-        System.out.println("$2a$10$SFThBICUUJeHvRwilpt7feqFwnn/ZnmmlzYN9/os5eGooILpZkAQm".length());
+        System.out.println("$2a$10$SFThBICUUJeHvRwilpt7feqFwnn/ZnmmlzYN9/os5eGooILpZkAQm111111111111".length());
     }
 }

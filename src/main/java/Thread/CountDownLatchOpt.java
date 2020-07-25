@@ -17,7 +17,7 @@ public class CountDownLatchOpt {
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(100);
 
-        for ( int i = 0; i < 10000; i++){
+        for ( int i = 0; i < 1000; i++){
             new Thread(() -> {
                 if (countDownLatch.getCount()>0){
                     System.out.println(Thread.currentThread().getName() + ": out " + countDownLatch.getCount());

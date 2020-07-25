@@ -23,10 +23,12 @@ public class JdkProxy implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        long l = System.currentTimeMillis();
         System.out.println("JDK 动态代理, 监听开始");
         System.out.println("调用方法: "+method.getName());
         Object result = method.invoke(targetClass,args);
         System.out.println("JDK 动态代理, 监听结束!");
+        System.out.println(method.getName() + "调用耗时: " + (System.currentTimeMillis() - l) + " ms");
         return result;
     }
 }
