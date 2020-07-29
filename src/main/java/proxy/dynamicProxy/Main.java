@@ -24,10 +24,10 @@ public class Main {
         System.out.println(name + " 已创建");
 
         UserService userService1 = (UserService) new CGlibProxy().getProxyInstance(new UserServiceImpl());
-        userService1.delete(user);
+        System.out.println(userService1.create(user));
 
         UserService userService2 = getProxy();
-        userService2.create(user);
+        System.out.println(userService2.create(user));
     }
 
     public static UserService getProxy(){
