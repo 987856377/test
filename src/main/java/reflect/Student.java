@@ -4,7 +4,7 @@ public class Student extends Person {
 
     private Integer score;
     private String title;
-    private boolean la;
+    private Boolean la;
     private User user;
 
     @Override
@@ -25,11 +25,11 @@ public class Student extends Person {
         this.user = user;
     }
 
-    public boolean isLa() {
+    public Boolean isLa() {
         return la;
     }
 
-    public void setLa(boolean la) {
+    public void setLa(Boolean la) {
         this.la = la;
     }
 

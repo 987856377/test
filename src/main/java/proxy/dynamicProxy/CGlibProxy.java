@@ -24,7 +24,7 @@ public class CGlibProxy implements MethodInterceptor {
         enhancer.setSuperclass(targetClass.getClass());
 
 //        使用 MethodInterceptor 做回调
-//        enhancer.setCallback(this);
+        enhancer.setCallback(this);
 //        enhancer.setCallback(new MethodInterceptor() {
 //            @Override
 //            public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {

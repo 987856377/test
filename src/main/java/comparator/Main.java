@@ -11,7 +11,7 @@ import java.util.Comparator;
  */
 public class Main {
     public static void main(String[] args) {
-        Comparator comparator = Comparator.comparingInt(o -> (Integer) o);
+        Comparator comparator = Comparator.comparingInt(Integer.class::cast);
 
         System.out.println(comparator.compare(1,2));
 

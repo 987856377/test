@@ -51,21 +51,23 @@ public class Time {
         LocalDateTime localDateTime2 = LocalDateTime.now();
         Date date2 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());
 
-        System.out.println(localDateTime1);
-        System.out.println(date2);
+        System.out.println("Date 转 LocalDateTime:  " + localDateTime1);
+        System.out.println("LocalDateTime 转 Date:  " + date2);
 
 //        LocalDateTime 转 String
         String s = LocalDateTime.now().atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm"));
-        System.out.println(s);
+        System.out.println("LocalDateTime 转 String:  " + s);
 //        String 转 LocalDateTime
         LocalDateTime parse = LocalDateTime.parse(s, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm"));
-        System.out.println(parse);
+        System.out.println("String 转 LocalDateTime:  " + parse);
 
 //        LocalDateTime 转 long
         long epochMilli = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        System.out.println(epochMilli);
+        System.out.println("LocalDateTime 转 long:  " + epochMilli);
 //        long 转 LocalDateTime
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMilli), ZoneId.systemDefault());
-        System.out.println(localDateTime);
+        System.out.println("long 转 LocalDateTime:  " + localDateTime);
+
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm")));
     }
 }

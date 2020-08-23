@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<products>
+    <product name="West Side Story" price="9.99" supplierId="1">BILIBILI</product>
+    <product name="Assassins" price="14.99" supplierId="2" />
+    <product name="Frogs" price="13.99" supplierId="1" />
+    <product name="Sweeney Todd" price="10.99" supplierId="3" />
+</products>

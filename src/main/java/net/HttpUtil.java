@@ -6,12 +6,12 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.SocketException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.Date;
 
 /**
  * @Description
@@ -90,14 +90,82 @@ public class HttpUtil {
         return null;
     }
 
+    public static String doPostHbi(String hostUrl, String serviceUrl,String urid , String pwd,  JSONObject requestString) {
+        String result = "";
+
+        DataOutputStream out = null;
+
+        BufferedReader reader = null;
+        HttpURLConnection connection = null;
+        try {
+            Date start=new Date();
+            String  host = hostUrl + "/?";
+            StringBuffer sb = new StringBuffer();
+            sb.append("service=" + serviceUrl);
+            sb.append("&urid="+urid);
+            sb.append("&pwd="+pwd);
+            sb.append("&parameter=" + URLEncoder.encode(requestString.toJSONString(),"utf-8"));
+
+//			logger.info("平台组装后的url:{}", host+sb.toString());
+            URL postUrl = new URL(hostUrl+"/");
+            connection = (HttpURLConnection) postUrl.openConnection();
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;Charset=UTF-8");
+            connection.connect();
+            out = new DataOutputStream(connection.getOutputStream());
+            out.writeBytes(sb.toString());
+            out.flush();
+            try {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            } catch (SocketException e){
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            }
+            String line;
+            while ((line = reader.readLine()) != null) {
+                result += line;
+            }
+            System.out.println("结果==============" + result);
+            result = result.replace("\\","");
+            Date end=new Date();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+
+            if (connection != null) {
+                connection.disconnect();
+            }
+
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return result;
+
+    }
+
 
     public static void main(String[] args) {
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("hospitalCode","12312");
-        jsonObject.put("patientCode","6484618");
-        String token ="";
-        jsonObject.put("hospitalDistId","A73D49255EC8ECD6069839D354A12B79");
-        HttpUtil.doPostJSONRequest("http://10.80.5.38:9335/register/queryBusCards",token, jsonObject);
+//        JSONObject jsonObject=new JSONObject();
+//        jsonObject.put("hospitalCode","12312");
+//        jsonObject.put("patientCode","6484618");
+//        String token ="";
+//        jsonObject.put("hospitalDistId","A73D49255EC8ECD6069839D354A12B79");
+//        HttpUtil.doPostJSONRequest("http://10.80.5.38:9335/register/queryBusCards",token, jsonObject);
 
 //        JSONObject jsonObject=new JSONObject();
 //        jsonObject.put("code","3C151659");
@@ -106,5 +174,10 @@ public class HttpUtil {
 //        System.out.println(object);
 
 
+        JSONObject jsonObject1 = new JSONObject();
+        jsonObject1.put("organizationId","1-1");
+        jsonObject1.put("count","1");
+        String s = doPostHbi("http://192.168.100.2:53509/hai/HttpEntry", "/webCloudClinic/getApplyNo", "", "", jsonObject1);
+        System.out.println(s);
     }
 }

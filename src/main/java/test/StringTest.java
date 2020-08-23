@@ -3,6 +3,9 @@ package test;
 import org.apache.commons.lang.StringEscapeUtils;
 import proxy.User;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class StringTest {
     public static void main(String[] args) {
         String ip = "http://127.0.0.1:8080";
@@ -24,6 +27,9 @@ public class StringTest {
 
         System.out.println(table);
 
+        String price = "17.50";
+        BigDecimal bigDecimal = new BigDecimal(price);
+        System.out.println(bigDecimal);
     }
 
 }

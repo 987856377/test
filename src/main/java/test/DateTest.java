@@ -20,13 +20,17 @@ public class DateTest {
 //
 //        System.out.println(simpleDateFormat.format(expiretime));
 
-        String  s = "20200721240059";
+//        String  s = "20200721240059";
+//
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+//        formatter.setLenient(false);
+//        Date newDate = formatter.parse(s);
+//        formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//
+//        System.out.println(formatter.format(newDate));
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-        formatter.setLenient(false);
-        Date newDate = formatter.parse(s);
-        formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        System.out.println(formatter.format(newDate));
+        SimpleDateFormat formatter1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+        String format = formatter1.format(new Date());
+        System.out.println(format);
     }
 }
