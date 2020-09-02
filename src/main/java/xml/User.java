@@ -1,5 +1,6 @@
 package xml;
 
+import reflect.Person;
 import reflect.annotation.NotNull;
 
 import java.io.Serializable;
@@ -15,6 +16,8 @@ public class User implements Serializable {
     private Boolean flag;
 
     private List<String> list;
+    @NotNull
+    private List<Person> personList;
 
     public User() {
     }
@@ -62,5 +65,13 @@ public class User implements Serializable {
 
     public void setList(List<String> list) {
         this.list = list;
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
     }
 }
