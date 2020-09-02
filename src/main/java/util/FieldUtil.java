@@ -4,7 +4,6 @@ import reflect.Person;
 import reflect.annotation.EnableNull;
 import reflect.annotation.NotNull;
 import reflect.annotation.Nullable;
-import reflect.annotation.Value;
 import xml.User;
 
 import java.lang.reflect.Field;
