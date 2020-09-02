@@ -144,18 +144,21 @@ public class FieldUtil {
 
     public static void main(String[] args) {
         User user = new User();
-//        user.setUsername("dksld");
+        user.setUsername("dksld");
         List<String> list = new ArrayList<>();
 //        list.add("dsds");
         user.setList(list);
         List<Person> personList = new ArrayList<>();
         personList.add(new Person());
-        System.out.println("validFieldsNonNull(user) = " + validFieldsNotNull(user));
+        System.out.println("validAllFieldsNotNull(user) = " + validAllFieldsNotNull(user));
 
         List<String> ignoreList = new ArrayList<>();
         ignoreList.add("username");
+        ignoreList.add("password");
         System.out.println("validFieldsNotNull(user,ignoreList) = " + validFieldsNotNull(user, ignoreList));
 
-        System.out.println("validAllFieldsNotNull(user) = " + validAllFieldsNotNull(user));
+        System.out.println("validFieldsNonNull(user) = " + validFieldsNotNull(user));
+
+        System.out.println("validFieldsNullable(user) = " + validFieldsNullable(user));
     }
 }

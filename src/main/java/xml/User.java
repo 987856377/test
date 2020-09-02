@@ -2,6 +2,7 @@ package xml;
 
 import reflect.Person;
 import reflect.annotation.NotNull;
+import reflect.annotation.Nullable;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +12,7 @@ public class User implements Serializable {
     @NotNull
     private String username;
 
+    @Nullable
     private String password;
 
     private Boolean flag;
