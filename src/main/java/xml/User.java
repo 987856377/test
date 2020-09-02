@@ -1,11 +1,20 @@
 package xml;
 
+import reflect.annotation.NotNull;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class User implements Serializable {
+
+    @NotNull
     private String username;
 
     private String password;
+
+    private Boolean flag;
+
+    private List<String> list;
 
     public User() {
     }
@@ -37,5 +46,21 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Boolean flag) {
+        this.flag = flag;
+    }
+
+    public List<String> getList() {
+        return list;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
     }
 }

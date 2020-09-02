@@ -3,10 +3,13 @@ package reflect;
 import com.sun.deploy.util.StringUtils;
 import reflect.annotation.Value;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * @Description
@@ -28,8 +31,17 @@ public class Main {
 
         Method method = User.class.getDeclaredMethod("getUsername");
 
+        System.out.println("field.getDeclaredAnnotations() = " + field.getDeclaredAnnotations());
+
         System.out.println(method.invoke(user));
         System.out.println(user.getUsername());
+
+        User user1 = new User();
+        print(user1);
+    }
+
+    public static void print(User user){
+        System.out.println("user = " + user);
     }
 
 }
