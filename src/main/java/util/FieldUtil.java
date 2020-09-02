@@ -1,8 +1,10 @@
 package util;
 
 import reflect.Person;
+import reflect.annotation.EnableNull;
 import reflect.annotation.NotNull;
 import reflect.annotation.Nullable;
+import reflect.annotation.Value;
 import xml.User;
 
 import java.lang.reflect.Field;
@@ -108,6 +110,36 @@ public class FieldUtil {
     }
 
     /**
+     * @Description: 判断对象中每个含有EnableNull注解的成员变量,默认可为空，可配置参数值
+     *                  为被该注解标记的成员变量不做判断
+     * @Param:  Object clazz                    需要验证的对象
+     * @return: List<String>                    数据为空成员变量
+     * @Author: Xu Zhenkui
+     * @Date: 2020/9/2 20:16
+     */
+    public static List<String> validFieldsEnableNull(Object clazz) {
+        List<String> list = new ArrayList<>();
+        Field[] fields = clazz.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            try {
+                if (field.isAnnotationPresent(EnableNull.class) && !field.getAnnotation(EnableNull.class).value()) {
+                    if (field.get(clazz) == null || "".equals(field.get(clazz))){
+                        list.add(field.getName());
+                    } else if (field.get(clazz) instanceof Collection && ((Collection<?>) field.get(clazz)).size() == 0){
+                        list.add(field.getName());
+                    }
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                list.add("IllegalAccessException");
+                return list;
+            }
+        }
+        return list;
+    }
+
+    /**
     * @Description: 判断对象中不包含在ignoreFieldSList中的成员变量都不为空
     * @Param:  Object clazz,                    需要验证的对象
      *          List<String> ignoreFieldSList   忽略验证的成员变量
@@ -160,5 +192,7 @@ public class FieldUtil {
         System.out.println("validFieldsNonNull(user) = " + validFieldsNotNull(user));
 
         System.out.println("validFieldsNullable(user) = " + validFieldsNullable(user));
+
+        System.out.println("validFieldsEnableNull(user) = " + validFieldsEnableNull(user));
     }
 }

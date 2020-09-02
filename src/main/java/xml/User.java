@@ -1,6 +1,7 @@
 package xml;
 
 import reflect.Person;
+import reflect.annotation.EnableNull;
 import reflect.annotation.NotNull;
 import reflect.annotation.Nullable;
 
@@ -15,9 +16,12 @@ public class User implements Serializable {
     @Nullable
     private String password;
 
+    @EnableNull(value = false)
     private Boolean flag;
 
+    @EnableNull
     private List<String> list;
+
     @NotNull
     private List<Person> personList;
 
