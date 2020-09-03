@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -35,10 +36,18 @@ public class FieldUtil {
         for (Field field : fields) {
             field.setAccessible(true);
             try {
-                if (field.get(clazz) == null || "".equals(field.get(clazz))){
-                    list.add(field.getName());
-                } else if (field.get(clazz) instanceof Collection && ((Collection<?>) field.get(clazz)).size() == 0){
-                    list.add(field.getName());
+                String fieldName = field.getName();
+                Object fieldValue = field.get(clazz);
+                if ((fieldValue == null || "".equals(fieldValue) && !field.getType().isPrimitive())){
+                    list.add(fieldName);
+                } else if (field.getType().getClassLoader() != null){
+                    list.add(fieldName + "{");
+                    list.addAll(validAllFieldsNotNull(fieldValue));
+                    list.add( "}");
+                } else if (fieldValue instanceof Collection && ((Collection<?>) fieldValue).size() == 0){
+                    list.add(fieldName);
+                } else if (fieldValue instanceof Map && ((Map<?, ?>) fieldValue).size() == 0){
+                    list.add(fieldName);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -52,6 +61,7 @@ public class FieldUtil {
 
     /**
     * @Description: 判断对象中每个含有NotNull注解的成员变量都不为空，其他可为空
+     *                  若成员变量为引用类型，引用类型中的成员变量必须使用相同的注解
     * @Param:  Object clazz                    需要验证的对象
     * @return: List<String>                    数据为空成员变量
     * @Author: Xu Zhenkui
@@ -63,11 +73,19 @@ public class FieldUtil {
         for (Field field : fields) {
             field.setAccessible(true);
             try {
+                String fieldName = field.getName();
+                Object fieldValue = field.get(clazz);
                 if (field.isAnnotationPresent(NotNull.class)) {
-                    if (field.get(clazz) == null || "".equals(field.get(clazz))){
-                        list.add(field.getName());
-                    } else if (field.get(clazz) instanceof Collection && ((Collection<?>) field.get(clazz)).size() == 0){
-                        list.add(field.getName());
+                    if ((fieldValue == null || "".equals(fieldValue) && !field.getType().isPrimitive())){
+                        list.add(fieldName);
+                    } else if (field.getType().getClassLoader() != null){
+                        list.add(fieldName + "{");
+                        list.addAll(validAllFieldsNotNull(fieldValue));
+                        list.add( "}");
+                    } else if (fieldValue instanceof Collection && ((Collection<?>) fieldValue).size() == 0){
+                        list.add(fieldName);
+                    } else if (fieldValue instanceof Map && ((Map<?, ?>) fieldValue).size() == 0){
+                        list.add(fieldName);
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -81,6 +99,7 @@ public class FieldUtil {
 
     /**
      * @Description: 判断对象中每个含有Nullable注解的成员变量可为空，其他都不为空
+     *                  若成员变量为引用类型，引用类型中的成员变量必须使用相同的注解
      * @Param:  Object clazz                    需要验证的对象
      * @return: List<String>                    数据为空成员变量
      * @Author: Xu Zhenkui
@@ -92,11 +111,19 @@ public class FieldUtil {
         for (Field field : fields) {
             field.setAccessible(true);
             try {
+                String fieldName = field.getName();
+                Object fieldValue = field.get(clazz);
                 if (!field.isAnnotationPresent(Nullable.class)) {
-                    if (field.get(clazz) == null || "".equals(field.get(clazz))){
-                        list.add(field.getName());
-                    } else if (field.get(clazz) instanceof Collection && ((Collection<?>) field.get(clazz)).size() == 0){
-                        list.add(field.getName());
+                    if ((fieldValue == null || "".equals(fieldValue) && !field.getType().isPrimitive())){
+                        list.add(fieldName);
+                    } else if (field.getType().getClassLoader() != null){
+                        list.add(fieldName + "{");
+                        list.addAll(validAllFieldsNotNull(fieldValue));
+                        list.add( "}");
+                    } else if (fieldValue instanceof Collection && ((Collection<?>) fieldValue).size() == 0){
+                        list.add(fieldName);
+                    } else if (fieldValue instanceof Map && ((Map<?, ?>) fieldValue).size() == 0){
+                        list.add(fieldName);
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -109,8 +136,9 @@ public class FieldUtil {
     }
 
     /**
-     * @Description: 判断对象中每个含有EnableNull注解的成员变量,默认可为空，可配置参数值
-     *                  为被该注解标记的成员变量不做判断
+     * @Description: 判断对象中每个含有EnableNull注解的成员变量,默认可为空，可配置参数值，
+     *                  为被该注解标记的成员变量不做判断，
+     *                  若成员变量为引用类型，引用类型中的成员变量必须使用相同的注解
      * @Param:  Object clazz                    需要验证的对象
      * @return: List<String>                    数据为空成员变量
      * @Author: Xu Zhenkui
@@ -122,11 +150,19 @@ public class FieldUtil {
         for (Field field : fields) {
             field.setAccessible(true);
             try {
+                String fieldName = field.getName();
+                Object fieldValue = field.get(clazz);
                 if (field.isAnnotationPresent(EnableNull.class) && !field.getAnnotation(EnableNull.class).value()) {
-                    if (field.get(clazz) == null || "".equals(field.get(clazz))){
-                        list.add(field.getName());
-                    } else if (field.get(clazz) instanceof Collection && ((Collection<?>) field.get(clazz)).size() == 0){
-                        list.add(field.getName());
+                    if ((fieldValue == null || "".equals(fieldValue) && !field.getType().isPrimitive())){
+                        list.add(fieldName);
+                    } else if (field.getType().getClassLoader() != null){
+                        list.add(fieldName + "{");
+                        list.addAll(validAllFieldsNotNull(fieldValue));
+                        list.add( "}");
+                    } else if (fieldValue instanceof Collection && ((Collection<?>) fieldValue).size() == 0){
+                        list.add(fieldName);
+                    } else if (fieldValue instanceof Map && ((Map<?, ?>) fieldValue).size() == 0){
+                        list.add(fieldName);
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -157,11 +193,19 @@ public class FieldUtil {
         for (Field field : fields) {
             field.setAccessible(true);
             try {
+                String fieldName = field.getName();
+                Object fieldValue = field.get(clazz);
                 if (!ignoreFieldList.contains(field.getName())){
-                    if (field.get(clazz) == null || "".equals(field.get(clazz))){
-                        list.add(field.getName());
-                    } else if (field.get(clazz) instanceof Collection && ((Collection<?>) field.get(clazz)).size() == 0){
-                        list.add(field.getName());
+                    if ((fieldValue == null || "".equals(fieldValue) && !field.getType().isPrimitive())){
+                        list.add(fieldName);
+                    } else if (field.getType().getClassLoader() != null){
+                        list.add(fieldName + "{");
+                        list.addAll(validAllFieldsNotNull(fieldValue));
+                        list.add( "}");
+                    } else if (fieldValue instanceof Collection && ((Collection<?>) fieldValue).size() == 0){
+                        list.add(fieldName);
+                    } else if (fieldValue instanceof Map && ((Map<?, ?>) fieldValue).size() == 0){
+                        list.add(fieldName);
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -176,6 +220,9 @@ public class FieldUtil {
     public static void main(String[] args) {
         User user = new User();
         user.setUsername("dksld");
+        Person person = new Person();
+        person.setName("ksdh");
+        user.setPerson(person);
         List<String> list = new ArrayList<>();
 //        list.add("dsds");
         user.setList(list);
@@ -188,7 +235,7 @@ public class FieldUtil {
         ignoreList.add("password");
         System.out.println("validFieldsNotNull(user,ignoreList) = " + validFieldsNotNull(user, ignoreList));
 
-        System.out.println("validFieldsNonNull(user) = " + validFieldsNotNull(user));
+        System.out.println("validFieldsNotNull(user) = " + validFieldsNotNull(user));
 
         System.out.println("validFieldsNullable(user) = " + validFieldsNullable(user));
 

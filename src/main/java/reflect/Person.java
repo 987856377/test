@@ -1,9 +1,17 @@
 package reflect;
 
+import reflect.annotation.EnableNull;
+import reflect.annotation.NotNull;
+import reflect.annotation.Nullable;
+
 public class Person {
+    @EnableNull(value = false)
     private Boolean alive;
     private String name;
     private int age;
+    @EnableNull
+    @Nullable
+    @NotNull
     private String sex;
 
     public String getSex() {

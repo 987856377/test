@@ -25,6 +25,11 @@ public class User implements Serializable {
     @NotNull
     private List<Person> personList;
 
+    @Nullable
+    @NotNull
+    @EnableNull(value = false)
+    private Person person;
+
     public User() {
     }
 
@@ -79,5 +84,13 @@ public class User implements Serializable {
 
     public void setPersonList(List<Person> personList) {
         this.personList = personList;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
