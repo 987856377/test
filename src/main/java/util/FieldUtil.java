@@ -7,6 +7,8 @@ import reflect.annotation.Nullable;
 import xml.User;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -175,6 +177,58 @@ public class FieldUtil {
     }
 
     /**
+     * @Description: 判断对象中每个含有注解的成员变量,默认可为空，可配置参数值，
+     *                  为被该注解标记的成员变量不做判断，
+     *                  若成员变量为引用类型，引用类型中的成员变量必须使用相同的注解
+     * @Param:  Object clazz                    需要验证的对象
+     * @return: List<String>                    数据为空成员变量
+     * @Author: Xu Zhenkui
+     * @Date: 2020/9/2 20:16
+     */
+    @Deprecated()
+    public static List<String> validFieldsByAnnotation(Object clazz) {
+        List<String> list = new ArrayList<>();
+        Field[] fields = clazz.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (field.isAnnotationPresent(EnableNull.class)) {
+                if (!field.getAnnotation(EnableNull.class).value()){
+                    list.addAll(valid(clazz,field));
+                }
+            } else if (field.isAnnotationPresent(NotNull.class)){
+                list.addAll(valid(clazz,field));
+            } else if (!field.isAnnotationPresent(Nullable.class)){
+                list.addAll(valid(clazz,field));
+            }
+        }
+        return list;
+    }
+
+    private static List<String> valid(Object clazz, Field field){
+        List<String> list = new ArrayList<>();
+        try {
+            String fieldName = field.getName();
+            Object fieldValue = field.get(clazz);
+            if ((fieldValue == null || "".equals(fieldValue) && !field.getType().isPrimitive())){
+                list.add(fieldName);
+            } else if (field.getType().getClassLoader() != null){
+                list.add(fieldName + "{");
+                list.addAll(validFieldsByAnnotation(fieldValue));
+                list.add( "}");
+            } else if (fieldValue instanceof Collection && ((Collection<?>) fieldValue).size() == 0){
+                list.add(fieldName);
+            } else if (fieldValue instanceof Map && ((Map<?, ?>) fieldValue).size() == 0){
+                list.add(fieldName);
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            list.add("IllegalAccessException");
+            return list;
+        }
+        return list;
+    }
+
+    /**
     * @Description: 判断对象中不包含在ignoreFieldSList中的成员变量都不为空
     * @Param:  Object clazz,                    需要验证的对象
      *          List<String> ignoreFieldSList   忽略验证的成员变量
@@ -227,7 +281,7 @@ public class FieldUtil {
 //        list.add("dsds");
         user.setList(list);
         List<Person> personList = new ArrayList<>();
-        personList.add(new Person());
+        personList.add(person);
         System.out.println("validAllFieldsNotNull(user) = " + validAllFieldsNotNull(user));
 
         List<String> ignoreList = new ArrayList<>();
@@ -240,5 +294,7 @@ public class FieldUtil {
         System.out.println("validFieldsNullable(user) = " + validFieldsNullable(user));
 
         System.out.println("validFieldsEnableNull(user) = " + validFieldsEnableNull(user));
+
+        System.out.println("validFieldsByAnnotation(user) = " + validFieldsByAnnotation(user));
     }
 }
