@@ -38,6 +38,9 @@ public class Main {
 
         User user1 = new User();
         print(user1);
+
+        User xzk = new UserBuilder().setUsername("xzk").setPassword("123456").build();
+        print(xzk);
     }
 
     public static void print(User user){

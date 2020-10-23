@@ -1,5 +1,10 @@
 package stream;
 
+import com.google.common.collect.Lists;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -31,5 +36,10 @@ public class Main {
         System.out.println(Stream.of(1, 2, 3, 4).reduce(Integer::max).orElse(0));
         System.out.println("无初始值，求min");
         System.out.println(Stream.of(1, 2, 3, 4).reduce(Integer::min).orElse(0));
+
+        List<Integer> list = Arrays.asList(6, 4, 6, 7, 3, 9, 8, 10, 12, 14, 14);
+
+        List<Integer> collect = list.stream().filter(integer -> integer >= 10).collect(Collectors.toList());
+        System.out.println(collect);
     }
 }

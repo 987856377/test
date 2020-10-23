@@ -2,6 +2,7 @@ package collections;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class IteratorOpt {
     public static void main(String[] args) {
 
 //        单线程
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
         list.add("1");
         list.add("2");
 
@@ -28,12 +29,21 @@ public class IteratorOpt {
 //            }
 //        }
 
-//        错误操作
-        for (String s : list){
-            if ("2".equals(s)){
-                list.remove(s);
+//        正确操作
+        for (int i = 0; i < list.size(); i++) {
+            if ("2".equals(list.get(i))){
+                list.remove(i);
+                i--;
+                continue;
             }
-        };
+        }
+
+//        错误操作
+//        for (String s : list){
+//            if ("2".equals(s)){
+//                list.remove(s);
+//            }
+//        };
 
         list.forEach(System.out::println);
     }

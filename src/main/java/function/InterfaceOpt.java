@@ -57,6 +57,9 @@ public class InterfaceOpt {
 
         setUsername(new Person(new Student()));
 
+        Student student = new Student("xzk");
+        System.out.println(Optional.ofNullable(student).map(Student::getName).orElse("NULL"));
+
     }
 
     public static String getUsername(Person person){

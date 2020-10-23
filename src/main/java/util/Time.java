@@ -69,5 +69,8 @@ public class Time {
         System.out.println("long 转 LocalDateTime:  " + localDateTime);
 
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm")));
+
+
+        System.out.println("now.getDayOfWeek().getValue() = " + now.getDayOfWeek().getValue());
     }
 }

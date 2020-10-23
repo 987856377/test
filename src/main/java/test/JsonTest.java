@@ -1,5 +1,6 @@
 package test;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringEscapeUtils;
 
@@ -41,6 +42,15 @@ public class JsonTest {
                 "}";
         JSONObject res = JSONObject.parseObject(StringEscapeUtils.unescapeJavaScript(str));
         System.out.println(res.toJSONString());
+
+
+        String json = "{\"test\":\"<p><span>手术指征：</span><span>诊断明确，症状明显，保守治疗效果差，结石长期刺激有致恶变可能。</span></p>\"}";
+
+        JSONObject object = JSONObject.parseObject(StringEscapeUtils.unescapeJavaScript(json.toString()));
+
+        System.out.println("json = " + json);
+
+        System.out.println(object.toJSONString());
 
     }
 }

@@ -28,8 +28,12 @@ public class StringTest {
         System.out.println(table);
 
         String price = "17.50";
-        BigDecimal bigDecimal = new BigDecimal(price);
+        BigDecimal bigDecimal = new BigDecimal("0.00");
         System.out.println(bigDecimal);
+
+        String s = "hello world";
+        System.out.println("s.replace(\"o\",\"g\") = " + s.replace("o", "g"));
+        System.out.println("s.replace(\"o\",\"g\") = " + s.replaceAll("o", "g"));
     }
 
 }
