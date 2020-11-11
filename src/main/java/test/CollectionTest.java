@@ -1,5 +1,6 @@
 package test;
 
+import common.ResultJson;
 import proxy.User;
 
 import java.util.*;
@@ -69,5 +70,36 @@ public class CollectionTest {
         for (Integer integer : collect) {
             System.out.println(integer);
         }
+
+        ResultJson<List<User>> resultJson1 = new ResultJson<>();
+        List<User> list1 = new ArrayList<>();
+        list1.add(new User("1","1"));
+        list1.add(new User("2","2"));
+        list1.add(new User("3","3"));
+        resultJson1.setData(list1);
+
+        ResultJson<List<User>> resultJson2 = new ResultJson<>();
+        List<User> list2 = new ArrayList<>();
+        list2.add(new User("4","4"));
+        list2.add(new User("5","5"));
+        list2.add(new User("6","6"));
+        resultJson2.setData(list2);
+
+//        resultJson1.getData().addAll(resultJson2.getData());
+
+        System.out.println(resultJson1.getData());
+
+
+        List<User> userList = new ArrayList<>();
+        userList.addAll(list1);
+        userList.addAll(list2);
+        System.out.println(userList);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("xz","ds");
+        System.out.println(map.get("xz"));
+        map.put("xz","ss");
+        System.out.println(map.get("xz"));
+        System.out.println(map.get("x") == null);
     }
 }

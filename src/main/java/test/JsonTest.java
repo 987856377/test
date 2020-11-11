@@ -52,5 +52,17 @@ public class JsonTest {
 
         System.out.println(object.toJSONString());
 
+
+        JSONObject param = new JSONObject();
+        param.put("xzbz","s");
+        System.out.println(param.getString("xzbz"));
+        if (param.getString("xzbz") == null){
+            param.put("xzbz","C");
+        }
+        System.out.println(param.getString("xzbz"));
+
+        System.out.println("xzbz = " + (param.getString("xzbz") == null));
+
+        System.out.println(param.get("x"));
     }
 }

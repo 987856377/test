@@ -5,6 +5,7 @@ import proxy.User;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.*;
 
 public class StringTest {
     public static void main(String[] args) {
@@ -34,6 +35,14 @@ public class StringTest {
         String s = "hello world";
         System.out.println("s.replace(\"o\",\"g\") = " + s.replace("o", "g"));
         System.out.println("s.replace(\"o\",\"g\") = " + s.replaceAll("o", "g"));
+
+        System.out.println(new BigDecimal("0.00"));
+
+
+
+        String string = UUID.randomUUID().toString();
+        string  = string.substring(0,16);
+        System.out.println("UUID.randomUUID().toString() = " +  string + ": " + string.length());
     }
 
 }

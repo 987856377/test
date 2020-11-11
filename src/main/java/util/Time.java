@@ -28,7 +28,7 @@ public class Time {
 
         SimpleDateFormat simdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
-        System.out.println(cal);
+        System.out.println(cal.get(Calendar.MONTH));
 
         String uuid = UUID.randomUUID().toString().replaceAll("-","").toUpperCase();
         System.out.println(uuid);
@@ -72,5 +72,13 @@ public class Time {
 
 
         System.out.println("now.getDayOfWeek().getValue() = " + now.getDayOfWeek().getValue());
+
+
+        Calendar instance = Calendar.getInstance();
+        System.out.println("instance.get(Calendar.MONTH) = " + instance.get(Calendar.MONTH));
+
+        String test = "2020-11-06 10:22:29";
+
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm")));
     }
 }
