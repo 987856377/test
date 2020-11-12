@@ -51,10 +51,12 @@ public class DateTest {
 
         // 医保跨月不可退
         SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyyMMddHHmmss");
-        Date feeDateTime = simpleDateFormat1.parse("20200711091509");
+        Date feeDateTime = simpleDateFormat1.parse("20201211091509");
         Calendar calendar = Calendar.getInstance();
         int currentMonth = calendar.get(Calendar.MONTH) + 1;
         int feeMonth = feeDateTime.getMonth() + 1;
+        System.out.println("currentMonth = " + currentMonth);
+        System.out.println("feeMonth = " + feeMonth);
         if (currentMonth != feeMonth) {
             System.out.println(currentMonth + ": " + feeMonth);
         }
