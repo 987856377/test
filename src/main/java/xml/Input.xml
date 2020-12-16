@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BSXml>
+    <MsgHeader>
+        <Sender>SZSH</Sender>
+        <MsgType>SZSH_0301</MsgType>
+        <MsgVersion>3.0</MsgVersion>
+    </MsgHeader>
+    <EmpSave>
+        <updatetime></updatetime>
+    </EmpSave>
+</BSXml>
+

@@ -1,5 +1,7 @@
 package test;
 
+import cn.hutool.json.JSON;
+import cn.hutool.json.XML;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringEscapeUtils;

@@ -43,6 +43,13 @@ public class StringTest {
         String string = UUID.randomUUID().toString();
         string  = string.substring(0,16);
         System.out.println("UUID.randomUUID().toString() = " +  string + ": " + string.length());
+
+        BigDecimal decimal = new BigDecimal("1.25");
+        BigDecimal decimal1 = new BigDecimal("1.65");
+        int i = decimal1.subtract(decimal).compareTo(BigDecimal.ZERO);
+        System.out.println("i = " + i);
+
+        System.out.println("decimal1.subtract(decimal) = " + decimal.subtract(decimal1).setScale(2, BigDecimal.ROUND_HALF_UP));
     }
 
 }

@@ -1,15 +1,12 @@
 package util;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.Map;
 
 public class XmlUtil {
-    public static String mapToXml(Map<String, String> map, String root){
+    public static String mapToXml(Map<String, String> map, String root) {
         StringBuilder sb = new StringBuilder();
         sb.append("<").append(root).append(">");
         sb.append(mapToXml(map));
@@ -17,15 +14,54 @@ public class XmlUtil {
         return sb.toString();
     }
 
-    public static String mapToXml(Map<String, String> map){
+    public static String mapToXml(Map<String, String> map) {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, String> entry : map.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            if (value != null && !("").equals(value)){
+            if (value != null && !("").equals(value)) {
                 sb.append("<").append(key).append("><![CDATA[").append(value).append("]]></").append(key).append(">");
             }
         }
+        return sb.toString();
+    }
+
+    public static String jsonToXml(JSONObject jsonObject, String root) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<").append(root).append(">");
+        sb.append(jsonToXml(jsonObject));
+        sb.append("</").append(root).append(">");
+        return sb.toString();
+    }
+
+    public static String jsonToXml(JSONObject jsonObject) {
+        StringBuilder sb = new StringBuilder();
+        jsonObject.keySet().forEach(key -> {
+            String node = key;
+            node = node.substring(0, 1).toUpperCase() + node.substring(1);
+            sb.append("<").append(node).append(">");
+            Object value = jsonObject.get(key);
+            if (value instanceof JSONArray) {
+                String itemName = key;
+                itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1, 1 + itemName.length() / 2);
+                sb.append(jsonToXml((JSONArray) value, itemName));
+            } else if (value instanceof JSONObject) {
+                sb.append(jsonToXml((JSONObject) value));
+            } else {
+                sb.append("<![CDATA[").append(value).append("]]>");
+            }
+            sb.append("</").append(node).append(">");
+        });
+        return sb.toString();
+    }
+
+    public static String jsonToXml(JSONArray jsonArray, String itemName) {
+        StringBuilder sb = new StringBuilder();
+        jsonArray.forEach(item -> {
+            sb.append("<").append(itemName).append(">");
+            sb.append(jsonToXml((JSONObject) item));
+            sb.append("</").append(itemName).append(">");
+        });
         return sb.toString();
     }
 

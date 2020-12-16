@@ -1,6 +1,9 @@
 package thread;
 
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @Description
@@ -15,17 +18,27 @@ public class CountDownLatchOpt {
 
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(100);
+        Set<Long> set = Collections.synchronizedSet(new HashSet<>());
 
-        for ( int i = 0; i < 1000; i++){
+        for ( int i = 0; i < 10; i++){
             new Thread(() -> {
-                if (countDownLatch.getCount()>0){
-                    System.out.println(Thread.currentThread().getName() + ": out " + countDownLatch.getCount());
-                    countDownLatch.countDown();
+                for (int j = 0; j < 10; j++) {
+                    if (countDownLatch.getCount()>0){
+                        countDownLatch.countDown();
+                        System.out.println(Thread.currentThread().getName() + ": out " + countDownLatch.getCount());
+                        set.add(countDownLatch.getCount());
+                    }
                 }
             },"Thread-"+i+": ").start();
         }
 
         countDownLatch.await();
+
+        while (Thread.activeCount() > 2){
+            Thread.yield();
+        }
         System.out.println(Thread.currentThread().getName() + ": end");
+
+        System.out.println(set.size());
     }
 }

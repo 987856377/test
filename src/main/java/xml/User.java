@@ -43,6 +43,10 @@ public class User implements Serializable {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", flag=" + flag +
+                ", list=" + list +
+                ", personList=" + personList +
+                ", person=" + person +
                 '}';
     }
 

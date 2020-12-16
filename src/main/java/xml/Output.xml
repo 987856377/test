@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BSXml>
+    <MsgHeader>
+        <Sender>HIP</Sender>
+        <Status>true</Status>
+        <ErrCode></ErrCode>
+        <Detail>查询成功</Detail>
+    </MsgHeader>
+    <Items>
+    </Items>
+</BSXml>

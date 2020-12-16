@@ -1,5 +1,6 @@
 package function;
 
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -15,7 +16,7 @@ import java.util.function.Supplier;
  * @Date 2020/5/11 8:48
  */
 public class InterfaceOpt {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Throwable {
 //        消费型接口
         Consumer<String> consumer = System.out::println;
         Consumer<Integer> consumer1 = s -> System.out.println(Math.sqrt(s));
@@ -52,14 +53,29 @@ public class InterfaceOpt {
 
 //      Optional类为了解决null值判断问题
         System.out.println("name: "+getUsername(new Person(new Student("frank"))));
-
         setUsername(new Person(new Student("lucy")));
-
         setUsername(new Person(new Student()));
 
         Student student = new Student();
+        student.setName("1.1");
 
-        System.out.println(Optional.ofNullable(student).map(Student::getName).orElse("0.00"));
+        // 如果 student name 不为空，则将年龄设置为20
+        Optional.ofNullable(student).map(Student::getName).ifPresent(s -> student.setAge(20));
+
+        // student name 是否为 null
+        boolean present = Optional.ofNullable(student).map(Student::getName).isPresent();
+        System.out.println("present = " + present);
+
+        // student name 为 null 时，返回 0.0
+        String s = Optional.ofNullable(student).map(Student::getName).orElse("0.0");
+        System.out.println("s = " + s);
+
+        // student name 不为 null 时，返回 name; 为 null 时，抛出 NoSuchElementException 异常
+        String s1 = Optional.ofNullable(student).map(Student::getName).get();
+        System.out.println("s1 = " + s1);
+
+        String s2 = Optional.ofNullable(student).map(Student::getName).orElseThrow((Supplier<Throwable>) RuntimeException::new);
+        System.out.println("s2 = " + s2);
 
     }
 
@@ -96,6 +112,7 @@ class Person{
 
 class Student{
     private String name;
+    private Integer age;
 
     public Student() {
     }
@@ -110,6 +127,14 @@ class Student{
 
     public String getName() {
         return name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
 

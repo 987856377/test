@@ -16,14 +16,14 @@ public class UUIDTest {
                 for (int j = 0; j < 10000; j++) {
                     String string = UUID.randomUUID().toString();
                     string  = string.substring(0,16);
-                    copySet.add(string);
+                    synSet.add(string);
                 }
             },"Thread- " + i + " -Running: ").start();
         }
         while (Thread.activeCount() > 2){
             Thread.yield();
         }
-        System.out.println("copySet.size() = " + copySet.size());
+        System.out.println("synSet.size() = " + synSet.size());
 
     }
 }
