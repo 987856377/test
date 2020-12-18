@@ -3,51 +3,50 @@ package xml.wapper;
 import java.io.Serializable;
 
 public class BSXml implements Serializable {
-    private String Sender;
-    private String MsgType;
-    private String MsgVersion;
-    private String Body;
+    private String sender;
+    private String msgType;
+    private String msgVersion;
+    private String body;
 
     public String getSender() {
-        return Sender;
+        return sender;
     }
 
     public void setSender(String sender) {
-        Sender = sender;
+        this.sender = sender;
     }
 
     public String getMsgType() {
-        return MsgType;
+        return msgType;
     }
 
     public void setMsgType(String msgType) {
-        MsgType = msgType;
+        this.msgType = msgType;
     }
 
     public String getMsgVersion() {
-        return MsgVersion;
+        return msgVersion;
     }
 
     public void setMsgVersion(String msgVersion) {
-        MsgVersion = msgVersion;
+        this.msgVersion = msgVersion;
     }
 
     public String getBody() {
-        return Body;
+        return body;
     }
 
     public void setBody(String body) {
-        Body = body;
+        this.body = body;
     }
-
 
     @Override
     public String toString() {
         return "BSXml{" +
-                "Sender='" + Sender + '\'' +
-                ", MsgType='" + MsgType + '\'' +
-                ", MsgVersion='" + MsgVersion + '\'' +
-                ", Body='" + Body + '\'' +
+                "sender='" + sender + '\'' +
+                ", msgType='" + msgType + '\'' +
+                ", msgVersion='" + msgVersion + '\'' +
+                ", body='" + body + '\'' +
                 '}';
     }
 }

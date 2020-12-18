@@ -42,9 +42,7 @@ public class XmlUtil {
             sb.append("<").append(node).append(">");
             Object value = jsonObject.get(key);
             if (value instanceof JSONArray) {
-                String itemName = key;
-                itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1, 1 + itemName.length() / 2);
-                sb.append(jsonToXml((JSONArray) value, itemName));
+                sb.append(jsonToXml((JSONArray) value, key));
             } else if (value instanceof JSONObject) {
                 sb.append(jsonToXml((JSONObject) value));
             } else {
@@ -59,7 +57,12 @@ public class XmlUtil {
         StringBuilder sb = new StringBuilder();
         jsonArray.forEach(item -> {
             sb.append("<").append(itemName).append(">");
-            sb.append(jsonToXml((JSONObject) item));
+            try {
+                JSONObject obj = (JSONObject) item;
+                sb.append(jsonToXml(obj));
+            } catch (ClassCastException e) {
+                sb.append(item);
+            }
             sb.append("</").append(itemName).append(">");
         });
         return sb.toString();
