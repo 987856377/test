@@ -2,16 +2,12 @@ package util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import xml.XmlConstants;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,7 +61,7 @@ public class JsonAndXmlUtils {
     public static String xmlForHai(String body) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<BSXml>");
-        Map<String,String> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<>();
         map.put("Sender", XmlConstants.SENDER);
         map.put("MsgType",XmlConstants.MSG_TYPE);
         map.put("MsgVersion",XmlConstants.MSG_VERSION);
@@ -75,19 +71,32 @@ public class JsonAndXmlUtils {
         return stringBuilder.toString();
     }
 
+    public static Map jsonToMap(String json){
+        if (json == null || "".equals(json)){
+            return null;
+        }
+        Map map;
+        try {
+            map = objectMapper.readValue(json, Map.class);
+        } catch (Exception e) {
+            return null;
+        }
+        return map;
+    }
+
     /**
      * 对象转字符串
      * @param object
      * @return json 字符串
      */
     public static String objectToJson(Object object) {
-        if (object == null) {
+        if (object == null){
             return null;
         }
         String json;
         try {
             json = objectMapper.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             return null;
         }
         return json;
@@ -105,7 +114,7 @@ public class JsonAndXmlUtils {
         String xml;
         try {
             xml = xmlMapper.writeValueAsString(data);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             return null;
         }
         return xml;
@@ -119,6 +128,9 @@ public class JsonAndXmlUtils {
      * @return java 对象
      */
     public static <T> T jsonToObject(String json, Class<T> clazz) {
+        if (json == null || "".equals(json)){
+            return null;
+        }
         T t;
         try {
             t = objectMapper.readValue(json, clazz);
@@ -136,6 +148,9 @@ public class JsonAndXmlUtils {
      * @return java 对象
      */
     public static <T> T xmlToObject(String xml, Class<T> clazz) {
+        if (xml == null || "".equals(xml)){
+            return null;
+        }
         T t;
         try {
             t = xmlMapper.readValue(xml, clazz);
@@ -151,7 +166,10 @@ public class JsonAndXmlUtils {
      * @param root 根节点
      * @return xml字符串
      */
-    public static String mapToXml(Map<String, String> map, String root) {
+    public static String mapToXml(Map<String, Object> map, String root) {
+        if (root == null || "".equals(root) || map == null || map.size() == 0 ){
+            return null;
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("<").append(root).append(">");
         sb.append(mapToXml(map));
@@ -164,12 +182,17 @@ public class JsonAndXmlUtils {
      * @param map
      * @return xml字符串
      */
-    public static String mapToXml(Map<String, String> map) {
+    public static String mapToXml(Map<String, Object> map) {
+        if (map == null || map.size() == 0){
+            return null;
+        }
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> entry : map.entrySet()) {
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
             String key = entry.getKey();
-            String value = entry.getValue();
-            if (value != null && !("").equals(value)) {
+            Object value = entry.getValue();
+            if (value instanceof Map){
+                sb.append(mapToXml((Map<String, Object>) value));
+            } else if (value != null && !("").equals(value)) {
                 sb.append("<").append(key).append("><![CDATA[").append(value).append("]]></").append(key).append(">");
             }
         }
@@ -186,6 +209,9 @@ public class JsonAndXmlUtils {
      * @throws Exception
      */
     public static String getXmlSingleElementValue(String xml, String element) {
+        if (xml == null || "".equals(xml) || element == null || "".equals(element)){
+            return null;
+        }
         //元素名大写<ELEMENT>(.*)<ELEMENT/>
         StringBuffer regex = new StringBuffer();
         regex.append("<").append(element.toUpperCase()).append(">");
@@ -211,6 +237,9 @@ public class JsonAndXmlUtils {
      * @throws Exception
      */
     public static List<String> getXmlListElementValue(String xml, String element) {
+        if (xml == null || "".equals(xml) || element == null || "".equals(element)){
+            return null;
+        }
         List<String> list = new ArrayList<String>();
         //元素名大写<ELEMENT>([^</ELEMENT>]*)</ELEMENT>
         StringBuffer regex = new StringBuffer();
@@ -230,6 +259,9 @@ public class JsonAndXmlUtils {
      * @return
      */
     public static String xmlNodeToUpperCase(String xml){
+        if (xml == null || "".equals(xml)){
+            return null;
+        }
         String regex = "<(/*[A-Za-z]+)>";
         Matcher matcher = Pattern.compile(regex).matcher(xml);
         StringBuffer sb = new StringBuffer();
@@ -246,6 +278,9 @@ public class JsonAndXmlUtils {
      * @return
      */
     public static String xmlNodeToLowerCase(String xml){
+        if (xml == null || "".equals(xml)){
+            return null;
+        }
         String regex = "<(/*[A-Za-z]+)>";
         Matcher matcher = Pattern.compile(regex).matcher(xml);
         StringBuffer sb = new StringBuffer();
@@ -262,6 +297,9 @@ public class JsonAndXmlUtils {
      * @return
      */
     public static String xmlNodeFirstLetterToUpperCase(String xml){
+        if (xml == null || "".equals(xml)){
+            return null;
+        }
         String regex = "<(/*[A-Za-z]+)>";
         Matcher matcher = Pattern.compile(regex).matcher(xml);
         StringBuffer sb = new StringBuffer();
@@ -280,6 +318,9 @@ public class JsonAndXmlUtils {
      * @return
      */
     public static String xmlNodeFirstLetterToLowerCase(String xml){
+        if (xml == null || "".equals(xml)){
+            return null;
+        }
         String regex = "<(/*[A-Za-z]+)>";
         Matcher matcher = Pattern.compile(regex).matcher(xml);
         StringBuffer sb = new StringBuffer();

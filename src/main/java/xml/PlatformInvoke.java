@@ -92,9 +92,15 @@ public class PlatformInvoke {
 
         String s1 = JSONObject.toJSONString(xmlRequest);
         System.out.println("s1 = " + s1);
+        String msgHeader = JsonAndXmlUtils.jsonToMap(s1).get("msgHeader").toString();
+        System.out.println("msgHeader = " + msgHeader);
+        System.out.println("jsonToMap = " + JsonAndXmlUtils.jsonToMap(s1));
+        System.out.println("mapToXml = " + JsonAndXmlUtils.mapToXml(JsonAndXmlUtils.jsonToMap(s1)));
 
         String s2 = XmlUtil.jsonToXml(JSONObject.parseObject(s1));
         System.out.println("s2 = " + s2);
+
+        System.out.println("JsonAndXmlUtils.xmlForHai(null) = " + JsonAndXmlUtils.xmlForHai(null));
 
     }
 }
