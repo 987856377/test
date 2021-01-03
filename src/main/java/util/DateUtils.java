@@ -19,7 +19,7 @@ public class DateUtils {
     }
 
     public static String localDateTimeToString(LocalDateTime localDateTime){
-        return localDateTime.atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm"));
+        return localDateTime.atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:ss:mm"));
     }
 
     public static String localDateTimeToString(LocalDateTime localDateTime, String pattern){

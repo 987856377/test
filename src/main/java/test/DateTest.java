@@ -4,10 +4,11 @@ import util.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
@@ -124,5 +125,12 @@ public class DateTest {
 
         System.out.println(date.getTime() + 10 * 1000 * 60);
         System.out.println(System.currentTimeMillis());
+
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("now = " + now);
+
+        System.out.println("now.plusDays(1) = " + now.plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:ss:mm")));
+
+        System.out.println("now.plus(1, ChronoUnit.DAYS) = " + now.plus(1, ChronoUnit.DAYS).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:ss:mm")));
     }
 }

@@ -1,16 +1,13 @@
 package test;
 
-import common.ResultJson;
-import proxy.User;
-
-import java.util.*;
-import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Predicate;
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CollectionTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
 //        Map<String,String> map = new HashMap();
 //        map.put("sd","ds");
 //
@@ -75,7 +72,7 @@ public class CollectionTest {
 //
 //        ResultJson<List<User>> resultJson1 = new ResultJson<>();
 //        List<User> list1 = new ArrayList<>();
-//        list1.add(new User("1","1"));
+//        list1.add(new User("1","2"));
 //        list1.add(new User("2","2"));
 //        list1.add(new User("3","3"));
 //        resultJson1.setData(list1);
@@ -86,6 +83,15 @@ public class CollectionTest {
 //        list2.add(new User("5","5"));
 //        list2.add(new User("6","6"));
 //        resultJson2.setData(list2);
+//
+//        if (list1.size() > 0){
+//            Optional.ofNullable(list1.get(0)).map(User::getPassword).ifPresent(s -> {
+//                int i = Integer.parseInt(s);
+//                if (i == 1 ){
+//                    System.out.println(i);
+//                }
+//            });
+//        }
 //
 //        resultJson1.getData().addAll(resultJson2.getData());
 //
