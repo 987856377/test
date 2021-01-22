@@ -72,17 +72,18 @@ public class StringTest {
 
         String ss = "1-1";
         System.out.println(change(String.valueOf(ss.charAt(0))));
+        System.out.println(ss.substring(0, 1));
 
     }
 
-    private static String change(String s){
+    private static String change(String s) {
         return s;
     }
 
-    public static char charConvertor(char c){
-        if ((int)c >= 65 && (int)c <= 90 ){
+    public static char charConvertor(char c) {
+        if ((int) c >= 65 && (int) c <= 90) {
             return (char) (c + 32);
-        } else if ((int)c >= 97 && (int)c <= 122 ){
+        } else if ((int) c >= 97 && (int) c <= 122) {
             return (char) (c - 32);
         } else {
             return c;
