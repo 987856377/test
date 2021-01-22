@@ -73,7 +73,6 @@ public class StringTest {
         String ss = "1-1";
         System.out.println(change(String.valueOf(ss.charAt(0))));
         System.out.println(ss.substring(0, 1));
-        System.out.println(ss.substring(0, 1));
 
     }
 
