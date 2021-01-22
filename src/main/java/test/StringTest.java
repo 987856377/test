@@ -47,21 +47,36 @@ public class StringTest {
 //        System.out.println("decimal1.subtract(decimal) = " + decimal.subtract(decimal1).setScale(2, BigDecimal.ROUND_HALF_UP));
 
 
-        // 小写字母转大写
-        char c = ip.charAt(0);
-        System.out.println((int)c);
+//        // 小写字母转大写
+//        char c = ip.charAt(0);
+//        System.out.println((int)c);
+//
+//        char c1 = (char) (c - 32);
+//        System.out.println(c1);
+//
+//        // 大写字母转大小写
+//        char c3 = (char) (c1 + 32);
+//        System.out.println(c3);
+//
+//        System.out.println("ip = " + ip);
+//        String replace = ip.replace(ip.charAt(0), charConvertor(ip.charAt(0)));
+//        System.out.println("replace = " + replace);
 
-        char c1 = (char) (c - 32);
-        System.out.println(c1);
+        String s1 = null;
+        String s2 = "";
 
-        // 大写字母转大小写
-        char c3 = (char) (c1 + 32);
-        System.out.println(c3);
 
-        System.out.println("ip = " + ip);
-        String replace = ip.replace(ip.charAt(0), charConvertor(ip.charAt(0)));
-        System.out.println("replace = " + replace);
+        System.out.println((s1 == null ? "" : s1).equals(s2 == null ? "" : s2));
 
+        System.out.println("s1.equals(s2) = " + s2.equals(s1));
+
+        String ss = "1-1";
+        System.out.println(change(String.valueOf(ss.charAt(0))));
+
+    }
+
+    private static String change(String s){
+        return s;
     }
 
     public static char charConvertor(char c){

@@ -1,6 +1,7 @@
 package test;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -218,5 +219,11 @@ public class CollectionTest {
         System.out.println("collect2 = " + collect2);
         System.out.println("collect3 = " + collect3);
 
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("1");
+//        String[] strings1 = (String[]) strings.toArray(); // java.lang.ClassCastException
+        String[] strings1 = strings.toArray(new String[0]);
+
+        System.out.println("strings1 = " + strings1[0]);
     }
 }

@@ -30,7 +30,10 @@ public class HttpTest {
                     e.printStackTrace();
                 }
 
-                String post = HttpUtil.post(sb.toString(), (String) null);
+//                String post = HttpUtil.post(sb.toString(), (String) null);
+                String post = HttpUtil.post("127.0.0.1:8090/his/user/getById", "{\n" +
+                        "    \"id\":200\n" +
+                        "}");
 
                 System.out.println(Thread.currentThread().getName() + post);
             }, "Thread- " + i + " -Running: ");
