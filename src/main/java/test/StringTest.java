@@ -1,9 +1,13 @@
 package test;
 
+import util.DateUtils;
+
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.time.LocalDate;
 
 public class StringTest {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         String ip = "http://127.0.0.1:8080";
 //        ip = ip.replace("127.0.0.1", "192.168.100.2");
 //        System.out.println(ip);
@@ -73,6 +77,22 @@ public class StringTest {
         String ss = "1-1";
         System.out.println(change(String.valueOf(ss.charAt(0))));
         System.out.println(ss.substring(0, 1));
+
+        String decode = URLDecoder.decode("http://172.31.1.92:9526/hai/HttpEntry//?service=/inspectionreport/listInspectionReport&urid=&pwd=&parameter=%7B%22patientIdentityCardNumber%22%3A%2237070419960322001X%22%2C%22pageSize%22%3A20%2C%22source%22%3A%229%22%2C%22hospitalCode%22%3A%221%22%2C%22pageNo%22%3A1%2C%22hospitalDistId%22%3A%22A73D49255EC8ECD6069839D354A12B79%22%2C%22patientIdentityCardType%22%3A%221%22%2C%22patientCode%22%3A%222973446%22%7D");
+        System.out.println(decode);
+
+        Object o = Class.forName("java.lang.Object").newInstance();
+        System.out.println("o.toString() = " + o.toString());
+
+        String date = "2021-01-27 17:07:13";
+        System.out.println("DateUtils.stringToLocalDateTime(date) = " + DateUtils.stringToLocalDateTime(date));
+
+
+        String dayAfter = LocalDate.now().plusDays(-1).toString();
+        String dayBefore = LocalDate.now().plusDays(2).toString();
+
+        System.out.println("dayAfter = " + dayAfter);
+        System.out.println("dayBefore = " + dayBefore);
 
     }
 

@@ -19,6 +19,9 @@ public class CGlibProxy implements MethodInterceptor {
     private Object targetClass;
 
     public Object getProxyInstance(Object targetClass) {
+        if (targetClass == null) {
+            throw new RuntimeException("target class is null");
+        }
         this.targetClass = targetClass;
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(targetClass.getClass());
@@ -31,7 +34,7 @@ public class CGlibProxy implements MethodInterceptor {
 //                long l = System.currentTimeMillis();
 //                System.out.println("CGlib 动态代理, 监听开始!");
 //                System.out.println("调用方法: "+method.getName());
-//                Object result = method.invoke(targetClass,objects);
+//                Object result = methodProxy.invokeSuper(o,objects);
 //                System.out.println("CGlib 动态代理, 监听结束!");
 //                System.out.println(method.getName() + "调用耗时: " + (System.currentTimeMillis() - l) + " ms");
 //                return result;
@@ -75,8 +78,8 @@ public class CGlibProxy implements MethodInterceptor {
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         long l = System.currentTimeMillis();
         System.out.println("CGlib 动态代理, 监听开始!");
-        System.out.println("调用方法: "+method.getName());
-        Object result = method.invoke(targetClass,objects);
+        System.out.println("调用方法: " + method.getName());
+        Object result = methodProxy.invokeSuper(o, objects);
         System.out.println("CGlib 动态代理, 监听结束!");
         System.out.println(method.getName() + "调用耗时: " + (System.currentTimeMillis() - l) + " ms");
         return result;
