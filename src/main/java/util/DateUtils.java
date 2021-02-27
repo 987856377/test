@@ -42,7 +42,7 @@ public class DateUtils {
         return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(pattern));
     }
 
-    public static LocalDateTime stringToLocalDateTime(Long epochMilli){
+    public static LocalDateTime longToLocalDateTime(Long epochMilli){
         return LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMilli), ZoneId.systemDefault());
     }
 

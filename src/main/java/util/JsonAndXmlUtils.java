@@ -55,24 +55,25 @@ public class JsonAndXmlUtils {
     /**
      * 调用方 HOL
      * 快速生成xml格式字符串
+     *
      * @param body
      * @return xml格式字符串
      */
     public static String xmlForHai(String body) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<BSXml>");
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("Sender", XmlConstants.SENDER);
-        map.put("MsgType",XmlConstants.MSG_TYPE);
-        map.put("MsgVersion",XmlConstants.MSG_VERSION);
-        String s = JsonAndXmlUtils.mapToXml(map,"MsgHeader");
+        map.put("MsgType", XmlConstants.MSG_TYPE);
+        map.put("MsgVersion", XmlConstants.MSG_VERSION);
+        String s = JsonAndXmlUtils.mapToXml(map, "MsgHeader");
         stringBuilder.append(s);
         stringBuilder.append("<Body><![CDATA[").append(body).append("]]></Body>").append("</BSXml>");
         return stringBuilder.toString();
     }
 
-    public static Map jsonToMap(String json){
-        if (json == null || "".equals(json)){
+    public static Map jsonToMap(String json) {
+        if (json == null || "".equals(json)) {
             return null;
         }
         Map map;
@@ -86,11 +87,12 @@ public class JsonAndXmlUtils {
 
     /**
      * 对象转字符串
+     *
      * @param object
      * @return json 字符串
      */
     public static String objectToJson(Object object) {
-        if (object == null){
+        if (object == null) {
             return null;
         }
         String json;
@@ -104,6 +106,7 @@ public class JsonAndXmlUtils {
 
     /**
      * 对象转xml格式字符串
+     *
      * @param data
      * @return xml 字符串
      */
@@ -122,13 +125,14 @@ public class JsonAndXmlUtils {
 
     /**
      * json字符串转对象
-     * @param json json字符串
+     *
+     * @param json  json字符串
      * @param clazz 类
-     * @param <T> 泛型
+     * @param <T>   泛型
      * @return java 对象
      */
     public static <T> T jsonToObject(String json, Class<T> clazz) {
-        if (json == null || "".equals(json)){
+        if (json == null || "".equals(json)) {
             return null;
         }
         T t;
@@ -142,13 +146,14 @@ public class JsonAndXmlUtils {
 
     /**
      * xml字符串转对象
-     * @param xml xml字符串
+     *
+     * @param xml   xml字符串
      * @param clazz 类
-     * @param <T> 泛型
+     * @param <T>   泛型
      * @return java 对象
      */
     public static <T> T xmlToObject(String xml, Class<T> clazz) {
-        if (xml == null || "".equals(xml)){
+        if (xml == null || "".equals(xml)) {
             return null;
         }
         T t;
@@ -162,12 +167,13 @@ public class JsonAndXmlUtils {
 
     /**
      * 指定根节点, map转xml字符串
+     *
      * @param map
      * @param root 根节点
      * @return xml字符串
      */
     public static String mapToXml(Map<String, Object> map, String root) {
-        if (root == null || "".equals(root) || map == null || map.size() == 0 ){
+        if (root == null || "".equals(root) || map == null || map.size() == 0) {
             return null;
         }
         StringBuilder sb = new StringBuilder();
@@ -179,18 +185,19 @@ public class JsonAndXmlUtils {
 
     /**
      * map转xml字符串
+     *
      * @param map
      * @return xml字符串
      */
     public static String mapToXml(Map<String, Object> map) {
-        if (map == null || map.size() == 0){
+        if (map == null || map.size() == 0) {
             return null;
         }
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-            if (value instanceof Map){
+            if (value instanceof Map) {
                 sb.append(mapToXml((Map<String, Object>) value));
             } else if (value != null && !("").equals(value)) {
                 sb.append("<").append(key).append("><![CDATA[").append(value).append("]]></").append(key).append(">");
@@ -203,20 +210,20 @@ public class JsonAndXmlUtils {
      * 获取xml字符串中元素标签值
      * <p>xml中元素标签唯一</p>
      *
-     * @param xml 响应报文(xml字符串格式)
-     * @param element     元素名(不区分大小写)
+     * @param xml     响应报文(xml字符串格式)
+     * @param element 元素名
      * @return xml字符串中元素标签值
      * @throws Exception
      */
     public static String getXmlSingleElementValue(String xml, String element) {
-        if (xml == null || "".equals(xml) || element == null || "".equals(element)){
+        if (xml == null || "".equals(xml) || element == null || "".equals(element)) {
             return null;
         }
-        //元素名大写<ELEMENT>(.*)<ELEMENT/>
+        //元素名<ELEMENT key = value ...>(.*)<ELEMENT/>
         StringBuffer regex = new StringBuffer();
-        regex.append("<").append(element.toUpperCase()).append(">");
+        regex.append("<").append(element + ".*").append(">");
         regex.append("(.*)");
-        regex.append("</").append(element.toUpperCase()).append(">");
+        regex.append("</").append(element).append(">");
 
         String str = "";
         Matcher matcher = Pattern.compile(regex.toString()).matcher(xml);
@@ -231,21 +238,21 @@ public class JsonAndXmlUtils {
      * <p>xml存在多个该元素标签</p>
      * <p>exmple:<DATA></DATA></p>
      *
-     * @param xml 响应报文(xml字符串格式)
-     * @param element     元素名(不区分大小写)
+     * @param xml     响应报文(xml字符串格式)
+     * @param element 元素名
      * @return xml字符串中元素标签列表
      * @throws Exception
      */
     public static List<String> getXmlListElementValue(String xml, String element) {
-        if (xml == null || "".equals(xml) || element == null || "".equals(element)){
+        if (xml == null || "".equals(xml) || element == null || "".equals(element)) {
             return null;
         }
         List<String> list = new ArrayList<String>();
-        //元素名大写<ELEMENT>([^</ELEMENT>]*)</ELEMENT>
+        //元素名<ELEMENT key = value ...>([^</ELEMENT>]*)</ELEMENT>
         StringBuffer regex = new StringBuffer();
-        regex.append("<").append(element.toUpperCase()).append(">");
-        regex.append("([^</" + element.toUpperCase() + ">]*)");
-        regex.append("</").append(element.toUpperCase()).append(">");
+        regex.append("<").append(element + ".*").append(">");
+        regex.append("([^</" + element + ">]*)");
+        regex.append("</").append(element).append(">");
         Matcher matcher = Pattern.compile(regex.toString()).matcher(xml);
         while (matcher.find()) {
             list.add(matcher.group(1));
@@ -255,11 +262,12 @@ public class JsonAndXmlUtils {
 
     /**
      * 将xml字符串中的节点转为大写字母
+     *
      * @param xml
      * @return
      */
-    public static String xmlNodeToUpperCase(String xml){
-        if (xml == null || "".equals(xml)){
+    public static String xmlNodeToUpperCase(String xml) {
+        if (xml == null || "".equals(xml)) {
             return null;
         }
         String regex = "<(/*[A-Za-z]+)>";
@@ -274,11 +282,12 @@ public class JsonAndXmlUtils {
 
     /**
      * 将xml字符串中的节点转为小写字母
+     *
      * @param xml
      * @return
      */
-    public static String xmlNodeToLowerCase(String xml){
-        if (xml == null || "".equals(xml)){
+    public static String xmlNodeToLowerCase(String xml) {
+        if (xml == null || "".equals(xml)) {
             return null;
         }
         String regex = "<(/*[A-Za-z]+)>";
@@ -293,11 +302,12 @@ public class JsonAndXmlUtils {
 
     /**
      * 将xml字符串中的节点首字母转为大写字母
+     *
      * @param xml
      * @return
      */
-    public static String xmlNodeFirstLetterToUpperCase(String xml){
-        if (xml == null || "".equals(xml)){
+    public static String xmlNodeFirstLetterToUpperCase(String xml) {
+        if (xml == null || "".equals(xml)) {
             return null;
         }
         String regex = "<(/*[A-Za-z]+)>";
@@ -314,11 +324,12 @@ public class JsonAndXmlUtils {
 
     /**
      * 将xml字符串中的节点首字母转为小写字母
+     *
      * @param xml
      * @return
      */
-    public static String xmlNodeFirstLetterToLowerCase(String xml){
-        if (xml == null || "".equals(xml)){
+    public static String xmlNodeFirstLetterToLowerCase(String xml) {
+        if (xml == null || "".equals(xml)) {
             return null;
         }
         String regex = "<(/*[A-Za-z]+)>";
@@ -335,13 +346,14 @@ public class JsonAndXmlUtils {
 
     /**
      * 大小写字母相互转换
+     *
      * @param c
      * @return
      */
-    public static char characterConvertor(char c){
-        if ((int)c >= 65 && (int)c <= 90 ){
+    public static char characterConvertor(char c) {
+        if ((int) c >= 65 && (int) c <= 90) {
             return (char) (c + 32);
-        } else if ((int)c >= 97 && (int)c <= 122 ){
+        } else if ((int) c >= 97 && (int) c <= 122) {
             return (char) (c - 32);
         } else {
             return c;
@@ -350,24 +362,26 @@ public class JsonAndXmlUtils {
 
     /**
      * 大写字母转为小写字母
+     *
      * @param c 大写字母
      * @return 小写字母
      */
-    public static char upperToLowerConvertor(char c){
-        if ((int)c >= 65 && (int)c <= 90 ){
+    public static char upperToLowerConvertor(char c) {
+        if ((int) c >= 65 && (int) c <= 90) {
             return (char) (c + 32);
-        }  else {
+        } else {
             return c;
         }
     }
 
     /**
      * 小写字母转为大写字母
+     *
      * @param c 小写字母
      * @return 大写字母
      */
-    public static char lowerToUpperConvertor(char c){
-        if ((int)c >= 97 && (int)c <= 122 ){
+    public static char lowerToUpperConvertor(char c) {
+        if ((int) c >= 97 && (int) c <= 122) {
             return (char) (c - 32);
         } else {
             return c;

@@ -1,20 +1,25 @@
 package test;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import com.google.common.util.concurrent.*;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import util.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAmount;
 import java.time.temporal.TemporalUnit;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class DateTest {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, ExecutionException, InterruptedException {
 //        Date date = new Date();
 //        System.out.println(date.getTime());
 //        System.out.println(date.getTime()+120*1000*60);
@@ -132,5 +137,26 @@ public class DateTest {
         System.out.println("now.plusDays(1) = " + now.plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:ss:mm")));
 
         System.out.println("now.plus(1, ChronoUnit.DAYS) = " + now.plus(1, ChronoUnit.DAYS).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:ss:mm")));
+
+        String dt = "2021-02-03 08:04:20";
+        if (dt.length() == 19) {
+            System.out.println(dt.replace(" ", "T").replace("-","").replace(":",""));
+        }
+
+        String nowDateTime = "2021-02-03 08:04:20";
+
+        System.out.println(formatter(nowDateTime));
+
+    }
+
+    public static String formatter(String dateTime) {
+        if (dateTime.length() == 19) {
+            if (" ".equals(String.valueOf(dateTime.charAt(10)))){
+                dateTime = dateTime.replace(" ", "T");
+            }
+            return dateTime.replace("-", "").replace(":", "");
+        } else {
+            return dateTime;
+        }
     }
 }

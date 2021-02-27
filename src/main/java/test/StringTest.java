@@ -5,6 +5,7 @@ import util.DateUtils;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class StringTest {
     public static void main(String[] args) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
@@ -88,7 +89,7 @@ public class StringTest {
         System.out.println("DateUtils.stringToLocalDateTime(date) = " + DateUtils.stringToLocalDateTime(date));
 
 
-        String dayAfter = LocalDate.now().plusDays(-1).toString();
+        String dayAfter = LocalDateTime.now().plusDays(-1).toString();
         String dayBefore = LocalDate.now().plusDays(2).toString();
 
         System.out.println("dayAfter = " + dayAfter);
@@ -108,6 +109,10 @@ public class StringTest {
         } else {
             return c;
         }
+    }
+
+    class A{
+
     }
 
 }
