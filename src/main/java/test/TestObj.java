@@ -87,10 +87,13 @@ public class TestObj {
                 "        </Items>\n" +
                 "    </Dic>\n" +
                 "</BSXml>\n";
+        System.out.println(xml);
         List<Item> items = JsonAndXmlUtils.xmlToObject(xml, BsXml.class).getDic().getItems();
         for (Item item : items) {
             System.out.println(item);
         }
+
+        System.out.println((JsonAndXmlUtils.xmlNodeFirstLetterToUpper(JsonAndXmlUtils.objectToXml(JsonAndXmlUtils.xmlToObject(xml, BsXml.class)))));
 
         String xml2 = "<BSXml>\n" +
                 "<MsgHeader>\n" +
