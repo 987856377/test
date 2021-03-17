@@ -1,11 +1,17 @@
 package test;
 
+import org.apache.commons.lang3.StringUtils;
 import util.JsonAndXmlUtils;
+import xml.User;
 import xml.po.BsXml;
 import xml.po.Item;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -133,6 +139,19 @@ public class TestObj {
                 "<Remark>备注</Remark>\n" +
                 "</BSXml> \n";
         System.out.println(JsonAndXmlUtils.getXmlListElementValue(xml, "AllowCure"));
+
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        Map<String,String> map = new HashMap<>();
+        User user = new User();
+        user.setUsername("frank");
+        map.put("name", user.getUsername());
+        map.put("pwd", user.getPassword());
+
+        System.out.println(map.get("name"));
+        System.out.println(map.get("pwd"));
+
+        String str = " ";
+        System.out.println(StringUtils.isNotBlank(str));
     }
 
     public static String getXmlSingleElementValue(String xml, String element) {

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -44,5 +45,7 @@ public class Test {
 
         System.out.println(change2("789",s -> Integer.parseInt(s) + 321, v -> String.valueOf(v)));
 
+        List<String> collect = list.stream().filter(s -> Integer.parseInt(s) > 3).collect(Collectors.toList());
+        System.out.println(collect.size());
     }
 }
