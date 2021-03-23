@@ -5,7 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class Reader {
+public class StreamReader {
     public static void main(String[] args) throws IOException {
         long l = System.currentTimeMillis();
         String read = readFile("D:\\txt\\NationAreaDictionary.txt");
@@ -14,8 +14,9 @@ public class Reader {
     }
 
     public static String readFile(String filePath) throws IOException {
-        FileReader fileReader = new FileReader(new File(filePath));
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
         StringBuilder stringBuilder = new StringBuilder();
         String temp;
@@ -24,7 +25,8 @@ public class Reader {
         }
 
         bufferedReader.close();
-        fileReader.close();
+        inputStreamReader.close();
+        fileInputStream.close();
         return stringBuilder.toString();
     }
 

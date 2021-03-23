@@ -6,10 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringEscapeUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @program: test
@@ -66,5 +63,11 @@ public class JsonTest {
         System.out.println("xzbz = " + (param.getString("xzbz") == null));
 
         System.out.println(param.get("x"));
+
+        String uuid = UUID.randomUUID().toString().replaceAll("-","");
+        System.out.println(uuid + " " + uuid.length());
+
+        String sss = "123456";
+        System.out.println(sss.substring(0,3));
     }
 }

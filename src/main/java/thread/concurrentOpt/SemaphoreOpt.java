@@ -1,4 +1,4 @@
-package thread;
+package thread.concurrentOpt;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
