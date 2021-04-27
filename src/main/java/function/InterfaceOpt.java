@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 /**
  * @Description
  * @Project test
- * @Package stream
+ * @Package collections.stream
  * @Author xuzhenkui
  * @Date 2020/5/11 8:48
  */

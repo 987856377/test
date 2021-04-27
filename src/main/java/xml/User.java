@@ -38,18 +38,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", flag=" + flag +
-                ", list=" + list +
-                ", personList=" + personList +
-                ", person=" + person +
-                '}';
-    }
-
     public String getUsername() {
         return username;
     }
@@ -96,5 +84,23 @@ public class User implements Serializable {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "{"
+                + "\"username\":\""
+                + username + '\"'
+                + ",\"password\":\""
+                + password + '\"'
+                + ",\"flag\":"
+                + flag
+                + ",\"list\":"
+                + list
+                + ",\"personList\":"
+                + personList
+                + ",\"person\":"
+                + person
+                + "}";
     }
 }

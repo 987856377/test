@@ -5,9 +5,7 @@ import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import util.JsonAndXmlUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -50,6 +48,7 @@ public class ExcelImport {
         });
         provinceList.forEach(item -> {
             if (item.getDictionaryList().size() == 0) {
+                System.out.println(item.getValue());
                 item.setDictionaryList(countyList.stream().filter(city -> city.getSupervising().startsWith(item.getKey())).collect(Collectors.toList()));
             }
         });
@@ -57,11 +56,11 @@ public class ExcelImport {
 
         // --------------------------------------------------------------------------------------------------
 
-//        inHospitalDictionaryList.stream().filter(province -> "1".equals(province.getType()))
+//        inHospitalDictionaryList.collections.stream().filter(province -> "1".equals(province.getType()))
 //                .forEach(province -> {
-//                    province.setDictionaryList(inHospitalDictionaryList.stream().filter(item -> "2".equals(item.getType()) && province.getKey().equals(item.getSupervising())).collect(Collectors.toList()));
+//                    province.setDictionaryList(inHospitalDictionaryList.collections.stream().filter(item -> "2".equals(item.getType()) && province.getKey().equals(item.getSupervising())).collect(Collectors.toList()));
 //                    province.getDictionaryList().forEach(city -> {
-//                        city.setDictionaryList(inHospitalDictionaryList.stream().filter(item -> city.getKey().equals(item.getSupervising()) && "3".equals(item.getType())).collect(Collectors.toList()));
+//                        city.setDictionaryList(inHospitalDictionaryList.collections.stream().filter(item -> city.getKey().equals(item.getSupervising()) && "3".equals(item.getType())).collect(Collectors.toList()));
 //                    });
 //        });
 

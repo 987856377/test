@@ -21,13 +21,13 @@ public class Main {
 
         User user = new User("xzk", "123");;
 
-        UserService userService = (UserService) new JdkProxy().getProxyInstance(ClassLoader.getSystemClassLoader().loadClass("proxy.UserServiceImpl").newInstance());
+        UserService userService = (UserService) new JdkProxy().getProxyInstance(Thread.currentThread().getContextClassLoader().loadClass("proxy.UserServiceImpl").newInstance());
         String name = userService.create(user);
 
-        UserService userService1 = (UserService) new CGlibProxy().getProxyInstance(ClassLoader.getSystemClassLoader().loadClass("proxy.UserServiceImpl").newInstance());
+        UserService userService1 = (UserService) new CGlibProxy().getProxyInstance(Thread.currentThread().getContextClassLoader().loadClass("proxy.UserServiceImpl").newInstance());
         System.out.println(userService1.create(user));
 
-        UserService userService2 = getProxy(ClassLoader.getSystemClassLoader().loadClass("proxy.UserServiceImpl").newInstance());
+        UserService userService2 = getProxy(Thread.currentThread().getContextClassLoader().loadClass("proxy.UserServiceImpl").newInstance());
         System.out.println(userService2.create(user));
 
     }

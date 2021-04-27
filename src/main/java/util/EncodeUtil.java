@@ -1,10 +1,11 @@
-package util; /**
+package util;
+
+/**
  * @author xuzhenkui
  * @project test
  * @package PACKAGE_NAME
  * @date 2019/8/14 21:53
  */
-
 
 /**
  * （1）把原字符串按字符循环获取asc码，并格式化为3位整数；

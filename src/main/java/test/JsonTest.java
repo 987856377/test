@@ -5,6 +5,7 @@ import cn.hutool.json.XML;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringEscapeUtils;
+import util.JsonAndXmlUtils;
 
 import java.util.*;
 
@@ -69,5 +70,9 @@ public class JsonTest {
 
         String sss = "123456";
         System.out.println(sss.substring(0,3));
+
+        String xml1= "<?xml version=\"1.0\" encoding=\"utf-8\"?><returnsms>  <returnstatus>Success</returnstatus>  <message>ok</message>  <taskid>2104021042086260</taskid></returnsms>";
+        String returnstatus = JsonAndXmlUtils.getXmlSingleElementValue(xml1, "message");
+        System.out.println(returnstatus);
     }
 }

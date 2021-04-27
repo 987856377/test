@@ -1,9 +1,12 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+
+import com.alipay.api.kms.aliyun.utils.Base64Utils;
+import io.Stream;
+import org.apache.commons.lang3.CharSetUtils;
+
+import java.io.*;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -14,36 +17,18 @@ import java.util.concurrent.TimeUnit;
  * @create: 2021-03-12 15:10
  **/
 public class Test {
-    public static List<Long> list = new ArrayList<>();
+    public static void main(String[] args) throws IOException {
+        StringJoiner stringJoiner = new StringJoiner(",","[","]");
+        stringJoiner.add("1");
+        stringJoiner.add("2");
+        stringJoiner.add("3");
+        StringJoiner stringJoiner1 = new StringJoiner(",");
+        stringJoiner1.add("4");
+        stringJoiner1.add("5");
+        stringJoiner1.add("6");
+        System.out.println(stringJoiner.toString());
+        System.out.println(stringJoiner.merge(stringJoiner1).toString());
 
-    static {
-        list.add(1L);
-        list.add(2L);
-        list.add(3L);
-        list.add(4L);
-    }
 
-    public static void main(String[] args) {
-        new Thread(() -> {
-            synchronized (list) {
-                System.out.println(Thread.currentThread().getName()  + remove());
-            }
-        },"Thread - put: ").start();
-
-        new Thread(() -> {
-            synchronized (list) {
-                System.out.println(Thread.currentThread().getName()  + put(8L));
-            }
-        },"Thread - remove: ").start();
-    }
-
-    public static synchronized Long put(Long value) {
-        list.add(value);
-        return value;
-    }
-
-    public static synchronized Long remove() {
-        int position = list.size() - 1;
-        return list.remove(position);
     }
 }
