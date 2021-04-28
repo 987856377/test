@@ -1,7 +1,5 @@
 package function;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 /**
  * @Description
  * @Project test

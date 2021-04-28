@@ -1,6 +1,6 @@
 package test;
 
-import xml.User;
+import xml.convert.User;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;

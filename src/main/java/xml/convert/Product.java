@@ -1,4 +1,4 @@
-package xml;
+package xml.convert;
 
 import java.io.Serializable;
 

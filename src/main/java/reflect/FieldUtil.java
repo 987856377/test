@@ -1,14 +1,11 @@
 package reflect;
 
-import reflect.Person;
 import reflect.annotation.EnableNull;
 import reflect.annotation.NotNull;
 import reflect.annotation.Nullable;
-import xml.User;
+import xml.convert.User;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

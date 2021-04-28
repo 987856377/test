@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BSXml> 
+  <MsgHeader> 
+    <Sender>ZJJ</Sender>  
+    <MsgType>ZJJ_FYJ</MsgType>  
+    <MsgVersion>3.0</MsgVersion> 
+  </MsgHeader>  
+  <Body> 
+    <Balance>35207941</Balance> 
+  </Body> 
+</BSXml>

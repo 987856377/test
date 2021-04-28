@@ -8,6 +8,8 @@ import org.apache.commons.lang3.CharSetUtils;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.BinaryOperator;
 
 /**
  * @program: test
@@ -29,6 +31,14 @@ public class Test {
         System.out.println(stringJoiner.toString());
         System.out.println(stringJoiner.merge(stringJoiner1).toString());
 
+        String str = "select * from user where id = ?";
+        AtomicReference<String> sql = new AtomicReference<>("");
+        sql.set(str);
+        sql.updateAndGet(s -> s.replaceFirst("\\?", "'" + 1 + "'"));
+
+        sql.accumulateAndGet(";", (s, s2) -> s + s2);
+
+        System.out.println(sql.get());
 
     }
 }

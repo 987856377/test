@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import org.apache.commons.lang3.StringUtils;
-import xml.XmlConstants;
+import xml.convert.XmlConstants;
 
 import java.util.*;
 import java.util.regex.Matcher;

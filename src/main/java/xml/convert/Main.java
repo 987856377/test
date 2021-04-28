@@ -1,16 +1,11 @@
-package xml;
+package xml.convert;
 
-import cn.hutool.core.util.XmlUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.json.XML;
-import com.alibaba.fastjson.JSONArray;
 import io.Stream;
-import org.w3c.dom.Document;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import java.io.*;
 import java.net.URISyntaxException;
 
