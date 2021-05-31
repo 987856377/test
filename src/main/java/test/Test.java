@@ -2,12 +2,12 @@ package test;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import proxy.User;
-import util.JsonAndXmlUtils;
+import java8.proxy.User;
 
 import java.io.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
@@ -67,10 +67,11 @@ public class Test {
         List<User> list = objectMapper.readValue(s1, new TypeReference<List<User>>() {});
         System.out.println(list.get(0).getName());
 
-        User newInstance = (User) Class.forName("proxy.User").newInstance();
+        User newInstance = (User) Class.forName("java8.proxy.User").newInstance();
         newInstance.setName("hahahaha");
         System.out.println(newInstance);
 
+        System.out.println(URLEncoder.encode("1.xml","UTF-8"));
     }
 
 }

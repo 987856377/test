@@ -1,6 +1,6 @@
 package test;
 
-import util.DateUtils;
+import tool.util.DateUtils;
 
 import java.io.IOException;
 import java.net.URLDecoder;
