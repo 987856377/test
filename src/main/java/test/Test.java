@@ -6,8 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java8.proxy.User;
 
 import java.io.*;
+import java.lang.ref.WeakReference;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
@@ -50,7 +55,7 @@ public class Test {
 
 
         ObjectMapper objectMapper = new ObjectMapper();
-        List<User> userList  = new ArrayList<>();
+        List<User> userList = new ArrayList<>();
         User user = new User();
         user.setPassword("dadsfa");
         user.setName("dfhalks");
@@ -64,14 +69,16 @@ public class Test {
         String s1 = objectMapper.writeValueAsString(userList);
         System.out.println(s1);
 
-        List<User> list = objectMapper.readValue(s1, new TypeReference<List<User>>() {});
+        List<User> list = objectMapper.readValue(s1, new TypeReference<List<User>>() {
+
+        });
         System.out.println(list.get(0).getName());
 
         User newInstance = (User) Class.forName("java8.proxy.User").newInstance();
         newInstance.setName("hahahaha");
         System.out.println(newInstance);
 
-        System.out.println(URLEncoder.encode("1.xml","UTF-8"));
+        System.out.println("com%002ebsoft%002eplatform%002edao%002e%0041ccount%004dapper.data".replace("%002e", "."));
     }
 
 }

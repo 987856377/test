@@ -50,6 +50,6 @@ public class RSATest {
         String decryptStr2 = sm4.decryptStr(encryptHex2, CharsetUtil.CHARSET_UTF_8);
         System.out.println(encryptHex2+"\r\n"+decryptStr2);
 
-        System.out.println(sm4.decryptStr("otZjYlYxPyqQgTh+Uk0KE4DAJTXQaI623iwzxBi6hEZNodG5fv/MV8WkWfn80HRnLJoIm7TAGuO6oq7B+W4J7YjFJhp1+Kko6WFl/u7zxTCRkv6zGRtmHPqO1MeO+3bN6oALtT5SraO7kDDFCV3bVg==", StandardCharsets.UTF_8));
+        System.out.println(sm4.decryptStr("otZjYlYxPyqQgTh+Uk0KE4DAJTXQaI623iwzxBi6hEbUSezEAnPD4Gu7j1cnV0twcYxYHz7BaounlS1Tgo/deA==", StandardCharsets.UTF_8));
     }
 }

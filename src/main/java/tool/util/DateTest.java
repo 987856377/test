@@ -139,6 +139,7 @@ public class DateTest {
 
         String before = "2021-02-03 08:04:20";
         String after = "2021-02-03 23:04:20";
+        System.out.println(after.length());
 
         LocalDateTime parseBefore = LocalDateTime.parse(before, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm"));
         LocalDateTime parseAfter = LocalDateTime.parse(after, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:ss:mm"));

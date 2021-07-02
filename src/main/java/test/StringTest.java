@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class StringTest {
     public static void main(String[] args) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
@@ -94,6 +95,9 @@ public class StringTest {
 
         System.out.println("dayAfter = " + dayAfter);
         System.out.println("dayBefore = " + dayBefore);
+
+        String[] list = {"dsk", "dsd"};
+        Arrays.stream(list).forEach(System.out::println);
 
     }
 
